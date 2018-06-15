@@ -24,3 +24,22 @@ Além disso, verifiquem os  requisitos que estão definidos no documentos de esp
 
 Elaine, Guilherme e Thais. 
 ```
+
+##Principais operações:
+```
+Inserção e atualização de dados de pessoas, incluindo clientes, funcionários e especialistas;
+
+Inserção de eventos e contratos;
+
+Inserção e atualização de dados relativos a fornecimento de produtos, fornecedores, pratos, bebidas e cardápio;
+
+Consultar quantas pessoas estão envolvidas em determinado evento;
+
+Consultar quais fornecedores estão envolvidos nos produtos de um item;
+
+Consultar quais são as melhores opções de fornecimento dos produtos necessários para formar todos os itens de um cardápio;
+
+Consultar quais são os fornecedores com maior volume de transações considerando os tipos de evento;
+
+Consultar contrato, local, cardápio, data, hora, tipo de festa e pessoas envolvidas em cada evento (cliente, funcionário e especialista).
+```
