@@ -43,3 +43,13 @@ Consultar quais são os fornecedores com maior volume de transações consideran
 
 Consultar contrato, local, cardápio, data, hora, tipo de festa e pessoas envolvidas em cada evento (cliente, funcionário e especialista).
 ```
+
+
+##Criando a base de dados:
+```
+Para criar automaticamente a base de dados, bastar executar o script run.sh.
+
+Note que é para esta operação, é necessário o auxílio do seguinte programa:
+
+https://github.com/FelSiq/bllsht-my-database/
+```
