@@ -7,7 +7,7 @@ USER=`whoami`
 ARGS=$1
 DEFAULT_NUM_INSERTS=20
 NUM_INSERTS=${ARGS:-$DEFAULT_NUM_INSERTS}
-DATABASE=database_buffet
+DATABASE=buffet
 INSERT_OUT=inserts.sql
 SCHEMA_PATH=schema.sql
 GENERATOR_PATH=bllsht-my-database-master/bllshtMyDatabase.py
@@ -38,8 +38,8 @@ echo "Criando a estrutura de $DATABASE..."
 psql $DATABASE < $SCHEMA_PATH && \
 
 # Gerando os inserts
-echo "Gerando os inserts para o database $DATABASE..."
-python3 $GENERATOR_PATH $SCHEMA_PATH $NUM_INSERTS > $INSERT_OUT && \
+#echo "Gerando os inserts para o database $DATABASE..."
+#python3 $GENERATOR_PATH $SCHEMA_PATH $NUM_INSERTS > $INSERT_OUT && \
 
 # Alimentando o banco de dados com os inserts
 echo "Alimentando $DATABASE com os inserts gerados..."
