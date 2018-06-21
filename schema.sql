@@ -4,7 +4,7 @@ CREATE TABLE PESSOA (
     EMAIL VARCHAR(64),
     ENDERECO VARCHAR(128),
     CONSTRAINT PK_PESSOA_0 PRIMARY KEY (CPF),
-    CONSTRAINT CK_PESSOA_0 CHECK(CPF ~ '^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$')
+    CONSTRAINT CK_PESSOA_0 CHECK(CPF ~ '^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$'),
     CONSTRAINT CK_PESSOA_1 CHECK (EMAIL ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$')
 );
 
