@@ -51,8 +51,13 @@ def printPeopleMenu():
 def printEventsMenu():
 	os.system('clear')
 	print("Eventos - Digite: ")
-	print("'1' para Visualizar Todas os Contratos")
-	print("'2' para Voltar ao Menu Principal")
+	print("'1' para Adicionar Formatura")
+	print("'2' para Alterar Formatura")
+	print("'3' para Adicionar Casamento")
+	print("'4' para Alterar Casamento")
+	print("'5' para Visualizar Todas os Eventos")
+	print("'6' para Deletar um Evento")
+	print("'7' para Voltar ao Menu Principal")
 
 def printContractsMenu():
 	os.system('clear')
@@ -363,6 +368,7 @@ def handleMenu():
 				print("Cliente adicionado com sucesso!")
 				clearDictionary(client)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Add Employee
 			if(option == 2):
@@ -372,6 +378,7 @@ def handleMenu():
 				print("Funcionário adicionado com sucesso!")
 				clearDictionary(employee)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Add SPECIALIST
 			if(option == 3):
@@ -381,6 +388,7 @@ def handleMenu():
 				print("Especialista adicionado com sucesso!")
 				clearDictionary(specialist)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize People Data
 			if(option == 4):
@@ -389,6 +397,9 @@ def handleMenu():
 				print(peopleData)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
+			option = -1
+
 
 		#Manage Events
 		if(option == 2):
@@ -410,6 +421,7 @@ def handleMenu():
 				print("Formatura adicionada com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Update Graduation
 			if(option == 2):
@@ -419,6 +431,7 @@ def handleMenu():
 				print("Formatura alterada com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Add Wedding
 			if(option == 3):
@@ -428,6 +441,7 @@ def handleMenu():
 				print("Casamento adicionado com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Update Wedding
 			if(option == 4):
@@ -437,6 +451,7 @@ def handleMenu():
 				print("Casamento alterado com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Events Data
 			if(option == 5):
@@ -445,6 +460,7 @@ def handleMenu():
 				print(eventsData)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Delete Event
 			if(option == 6):
@@ -454,10 +470,12 @@ def handleMenu():
 				print("Evento removido com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
+			option = -1
 
 		#Manage Contracts
 		if(option == 3):
-			printEventsMenu()
+			printContractsMenu()
 			while(True):
 				try:
 					option = int(input("Selecione sua opção: "))
@@ -474,6 +492,8 @@ def handleMenu():
 				print(contractsData)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
+			option = -1
 
 		#Manage Operation
 		if(option == 4):
@@ -494,6 +514,7 @@ def handleMenu():
 				print(productsData)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Providers Data
 			if(option == 2):
@@ -502,6 +523,7 @@ def handleMenu():
 				print(providersData)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Menu Data
 			if(option == 3):
@@ -510,6 +532,7 @@ def handleMenu():
 				print(menuData)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Menu Items Data
 			if(option == 4):
@@ -518,6 +541,8 @@ def handleMenu():
 				print(menuItemsData)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
+			option = -1
 
 		#Queries
 		if(option == 5):
@@ -538,6 +563,7 @@ def handleMenu():
 				print(query1Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Query 2 Data
 			if(option == 2):
@@ -546,6 +572,7 @@ def handleMenu():
 				print(query2Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Query 3 Data
 			if(option == 3):
@@ -554,6 +581,7 @@ def handleMenu():
 				print(query3Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Query 4 Data
 			if(option == 4):
@@ -562,6 +590,7 @@ def handleMenu():
 				print(query4Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Query 5 Data
 			if(option == 5):
@@ -570,6 +599,7 @@ def handleMenu():
 				print(query5Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
+				option = -1
 
 			#Visualize Query 6 Data
 			if(option == 6):
@@ -579,8 +609,10 @@ def handleMenu():
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
+			option = -1
 
 		if(option == 6): exit = True
+		option = -1
 
 if __name__ == "__main__":
 	handleMenu()
