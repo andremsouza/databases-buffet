@@ -19,6 +19,9 @@ client = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None}
 employee = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'salary' : None, 'function' : None}
 specialist = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'specialty' : None, 'hourFee' : None}
 
+graduation = {'client' : None, 'date' : None, 'value' : None, 'paymentMethod' : None, 'peopleNumber' : None, 'bartender' : None, 'cupbearer' : None, 'hall' : None}
+
+
 textPeople = 'People info here'
 
 
@@ -81,9 +84,6 @@ class Ui_MainWindow(object):
         self.actionRemover = QtGui.QAction(MainWindow)
         self.actionRemover.setObjectName(_fromUtf8("actionRemover"))
         
-        self.actionAdicionar_2 = QtGui.QAction(MainWindow)
-        self.actionAdicionar_2.setObjectName(_fromUtf8("actionAdicionar_2"))
-        
         self.actionAlterar_2 = QtGui.QAction(MainWindow)
         self.actionAlterar_2.setObjectName(_fromUtf8("actionAlterar_2"))
         
@@ -92,9 +92,6 @@ class Ui_MainWindow(object):
         
         self.actionVisualizar_2 = QtGui.QAction(MainWindow)
         self.actionVisualizar_2.setObjectName(_fromUtf8("actionVisualizar_2"))
-        
-        self.actionAlterar_3 = QtGui.QAction(MainWindow)
-        self.actionAlterar_3.setObjectName(_fromUtf8("actionAlterar_3"))
         
         self.actionRemover_3 = QtGui.QAction(MainWindow)
         self.actionRemover_3.setObjectName(_fromUtf8("actionRemover_3"))
@@ -143,6 +140,34 @@ class Ui_MainWindow(object):
         
         self.actionItens_de_Card_pios = QtGui.QAction(MainWindow)
         self.actionItens_de_Card_pios.setObjectName(_fromUtf8("actionItens_de_Card_pios"))
+
+        self.actionFormatura = QtGui.QAction(MainWindow)
+        self.actionFormatura.setObjectName(_fromUtf8("actionFormatura"))
+        
+        self.actionCasamento = QtGui.QAction(MainWindow)
+        self.actionCasamento.setObjectName(_fromUtf8("actionCasamento"))
+
+        self.menuAdicionar_2 = QtGui.QMenu(self.menuGerenciar_Eventos)
+        self.menuAdicionar_2.setObjectName(_fromUtf8("menuAdicionar_2"))
+
+        self.menuAdicionar_2.addAction(self.actionFormatura)
+        self.menuAdicionar_2.addAction(self.actionCasamento)
+
+        self.menuGerenciar_Eventos.addAction(self.menuAdicionar_2.menuAction())
+
+        self.actionFormatura_2 = QtGui.QAction(MainWindow)
+        self.actionFormatura_2.setObjectName(_fromUtf8("actionFormatura_2"))
+        
+        self.actionCasamento_2 = QtGui.QAction(MainWindow)
+        self.actionCasamento_2.setObjectName(_fromUtf8("actionCasamento_2"))
+
+        self.menuAlterar = QtGui.QMenu(self.menuGerenciar_Eventos)
+        self.menuAlterar.setObjectName(_fromUtf8("menuAlterar"))
+
+        self.menuAlterar.addAction(self.actionFormatura_2)
+        self.menuAlterar.addAction(self.actionCasamento_2)
+
+        self.menuGerenciar_Eventos.addAction(self.menuAlterar.menuAction())
         
         self.menuAdicionar.addAction(self.actionCliente)
         self.menuAdicionar.addAction(self.actionFuncion_rios)
@@ -151,9 +176,7 @@ class Ui_MainWindow(object):
         self.menuGerenciar_Pessoas.addAction(self.menuAdicionar.menuAction())
         self.menuGerenciar_Pessoas.addAction(self.actionVisualizar)
         
-        self.menuGerenciar_Eventos.addAction(self.actionAdicionar_2)
         self.menuGerenciar_Eventos.addAction(self.actionVisualizar_2)
-        self.menuGerenciar_Eventos.addAction(self.actionAlterar_3)
         self.menuGerenciar_Eventos.addAction(self.actionRemover_3)
         
         self.menuGerenciar_Contatos.addAction(self.actionVisualizar_3)
@@ -425,6 +448,258 @@ class Ui_MainWindow(object):
         self.visualizePeopleBox.setVisible(0)
         ### --- ###
 
+        ### Add Graduation ###
+        self.addGraduationBox = QtGui.QGroupBox(self.centralwidget)
+        self.addGraduationBox.setGeometry(QtCore.QRect(0, 0, 871, 581))
+        self.addGraduationBox.setObjectName(_fromUtf8("addGraduationBox"))
+        self.verticalLayoutWidget_2 = QtGui.QWidget(self.addGraduationBox)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 20, 871, 421))
+        self.verticalLayoutWidget_2.setObjectName(_fromUtf8("verticalLayoutWidget_2"))
+        self.verticalLayout_3 = QtGui.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_3.setMargin(0)
+        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        
+        self.clientGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.clientGraduation.setObjectName(_fromUtf8("clientGraduation"))
+        self.horizontalLayout_2.addWidget(self.clientGraduation)
+        self.clientGraduationLine = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.clientGraduationLine.setObjectName(_fromUtf8("clientGraduationLine"))
+        self.horizontalLayout_2.addWidget(self.clientGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
+        self.horizontalLayout_11 = QtGui.QHBoxLayout()
+        self.horizontalLayout_11.setObjectName(_fromUtf8("horizontalLayout_11"))
+        
+        self.valueGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.valueGraduation.setObjectName(_fromUtf8("valueGraduation"))
+        self.horizontalLayout_11.addWidget(self.valueGraduation)
+        self.valueGraduationLine = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.valueGraduationLine.setObjectName(_fromUtf8("valueGraduationLine"))
+        self.horizontalLayout_11.addWidget(self.valueGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_11)
+        self.horizontalLayout_5 = QtGui.QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(_fromUtf8("horizontalLayout_5"))
+        
+        self.methodGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.methodGraduation.setObjectName(_fromUtf8("methodGraduation"))
+        self.horizontalLayout_5.addWidget(self.methodGraduation)
+        self.methodGraduationLine = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.methodGraduationLine.setObjectName(_fromUtf8("methodGraduationLine"))
+        self.horizontalLayout_5.addWidget(self.methodGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_5)
+        self.horizontalLayout_6 = QtGui.QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(_fromUtf8("horizontalLayout_6"))
+        
+        self.nPeopleGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.nPeopleGraduation.setObjectName(_fromUtf8("nPeopleGraduation"))
+        self.horizontalLayout_6.addWidget(self.nPeopleGraduation)
+        self.nPeopleGraduationLine = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.nPeopleGraduationLine.setObjectName(_fromUtf8("nPeopleGraduationLine"))
+        self.horizontalLayout_6.addWidget(self.nPeopleGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_6)
+        self.horizontalLayout_8 = QtGui.QHBoxLayout()
+        self.horizontalLayout_8.setObjectName(_fromUtf8("horizontalLayout_8"))
+        
+        self.bartenderGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.bartenderGraduation.setObjectName(_fromUtf8("bartenderGraduation"))
+        self.horizontalLayout_8.addWidget(self.bartenderGraduation)
+        self.bartenderGraduationLine = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.bartenderGraduationLine.setObjectName(_fromUtf8("bartenderGraduationLine"))
+        self.horizontalLayout_8.addWidget(self.bartenderGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_8)
+        self.horizontalLayout_10 = QtGui.QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(_fromUtf8("horizontalLayout_10"))
+        
+        self.cupbearerGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.cupbearerGraduation.setObjectName(_fromUtf8("cupbearerGraduation"))
+        self.horizontalLayout_10.addWidget(self.cupbearerGraduation)
+        self.cupbearerGraduationLine = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.cupbearerGraduationLine.setObjectName(_fromUtf8("cupbearerGraduationLine"))
+        self.horizontalLayout_10.addWidget(self.cupbearerGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_10)
+        self.horizontalLayout_9 = QtGui.QHBoxLayout()
+        self.horizontalLayout_9.setObjectName(_fromUtf8("horizontalLayout_9"))
+        
+        self.hallGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.hallGraduation.setObjectName(_fromUtf8("hallGraduation"))
+        self.horizontalLayout_9.addWidget(self.hallGraduation)
+        self.hallGraduationLine = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.hallGraduationLine.setObjectName(_fromUtf8("hallGraduationLine"))
+        self.horizontalLayout_9.addWidget(self.hallGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_9)
+        self.horizontalLayout_4 = QtGui.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
+        
+        self.dateGraduation = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.dateGraduation.setObjectName(_fromUtf8("dateGraduation"))
+        self.horizontalLayout_4.addWidget(self.dateGraduation)
+        self.dateGraduationLine = QtGui.QDateTimeEdit(self.verticalLayoutWidget_2)
+        self.dateGraduationLine.setObjectName(_fromUtf8("dateGraduationLine"))
+        self.horizontalLayout_4.addWidget(self.dateGraduationLine)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_4)
+        
+        self.graduationAddBtnSend = QtGui.QPushButton(self.verticalLayoutWidget_2)
+        self.graduationAddBtnSend.setObjectName(_fromUtf8("graduationAddBtnSend"))
+        self.verticalLayout_3.addWidget(self.graduationAddBtnSend)
+        self.line = QtGui.QFrame(self.verticalLayoutWidget_2)
+        self.line.setFrameShape(QtGui.QFrame.HLine)
+        self.line.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line.setObjectName(_fromUtf8("line"))
+        self.verticalLayout_3.addWidget(self.line)
+        self.graduationSucessOrFail = QtGui.QLabel(self.addGraduationBox)
+        self.graduationSucessOrFail.setGeometry(QtCore.QRect(-10, 430, 869, 49))
+        self.graduationSucessOrFail.setObjectName(_fromUtf8("label"))
+
+        self.graduationSucessOrFail.setVisible(0)
+        self.addGraduationBox.setVisible(0)
+        ### --- ###
+
+        ### Update Graduation ###
+        self.updateGraduationBox = QtGui.QGroupBox(self.centralwidget)
+        self.updateGraduationBox.setGeometry(QtCore.QRect(0, 0, 871, 581))
+        self.updateGraduationBox.setObjectName(_fromUtf8("updateGraduationBox"))
+        self.verticalLayoutWidget_2 = QtGui.QWidget(self.updateGraduationBox)
+        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 20, 871, 421))
+        self.verticalLayoutWidget_2.setObjectName(_fromUtf8("verticalLayoutWidget_2"))
+        self.verticalLayout_3 = QtGui.QVBoxLayout(self.verticalLayoutWidget_2)
+        self.verticalLayout_3.setMargin(0)
+        self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
+        self.horizontalLayout_2 = QtGui.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
+        
+        self.clientGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.clientGraduationUpdate.setObjectName(_fromUtf8("clientGraduationUpdate"))
+        self.horizontalLayout_2.addWidget(self.clientGraduationUpdate)
+        self.clientGraduationLineUpdate = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.clientGraduationLineUpdate.setObjectName(_fromUtf8("clientGraduationLineUpdate"))
+        self.horizontalLayout_2.addWidget(self.clientGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_2)
+        self.horizontalLayout_11 = QtGui.QHBoxLayout()
+        self.horizontalLayout_11.setObjectName(_fromUtf8("horizontalLayout_11"))
+        
+        self.valueGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.valueGraduationUpdate.setObjectName(_fromUtf8("valueGraduationUpdate"))
+        self.horizontalLayout_11.addWidget(self.valueGraduationUpdate)
+        self.valueGraduationLineUpdate = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.valueGraduationLineUpdate.setObjectName(_fromUtf8("valueGraduationLineUpdate"))
+        self.horizontalLayout_11.addWidget(self.valueGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_11)
+        self.horizontalLayout_5 = QtGui.QHBoxLayout()
+        self.horizontalLayout_5.setObjectName(_fromUtf8("horizontalLayout_5"))
+        
+        self.methodGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.methodGraduationUpdate.setObjectName(_fromUtf8("methodGraduationUpdate"))
+        self.horizontalLayout_5.addWidget(self.methodGraduationUpdate)
+        self.methodGraduationLineUpdate = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.methodGraduationLineUpdate.setObjectName(_fromUtf8("methodGraduationLineUpdate"))
+        self.horizontalLayout_5.addWidget(self.methodGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_5)
+        self.horizontalLayout_6 = QtGui.QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(_fromUtf8("horizontalLayout_6"))
+        
+        self.nPeopleGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.nPeopleGraduationUpdate.setObjectName(_fromUtf8("nPeopleGraduationUpdate"))
+        self.horizontalLayout_6.addWidget(self.nPeopleGraduationUpdate)
+        self.nPeopleGraduationLineUpdate = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.nPeopleGraduationLineUpdate.setObjectName(_fromUtf8("nPeopleGraduationLineUpdate"))
+        self.horizontalLayout_6.addWidget(self.nPeopleGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_6)
+        self.horizontalLayout_8 = QtGui.QHBoxLayout()
+        self.horizontalLayout_8.setObjectName(_fromUtf8("horizontalLayout_8"))
+        
+        self.bartenderGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.bartenderGraduationUpdate.setObjectName(_fromUtf8("bartenderGraduationUpdate"))
+        self.horizontalLayout_8.addWidget(self.bartenderGraduationUpdate)
+        self.bartenderGraduationLineUpdate = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.bartenderGraduationLineUpdate.setObjectName(_fromUtf8("bartenderGraduationLineUpdate"))
+        self.horizontalLayout_8.addWidget(self.bartenderGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_8)
+        self.horizontalLayout_10 = QtGui.QHBoxLayout()
+        self.horizontalLayout_10.setObjectName(_fromUtf8("horizontalLayout_10"))
+        
+        self.cupbearerGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.cupbearerGraduationUpdate.setObjectName(_fromUtf8("cupbearerGraduationUpdate"))
+        self.horizontalLayout_10.addWidget(self.cupbearerGraduationUpdate)
+        self.cupbearerGraduationLineUpdate = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.cupbearerGraduationLineUpdate.setObjectName(_fromUtf8("cupbearerGraduationLineUpdate"))
+        self.horizontalLayout_10.addWidget(self.cupbearerGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_10)
+        self.horizontalLayout_9 = QtGui.QHBoxLayout()
+        self.horizontalLayout_9.setObjectName(_fromUtf8("horizontalLayout_9"))
+        
+        self.hallGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.hallGraduationUpdate.setObjectName(_fromUtf8("hallGraduationUpdate"))
+        self.horizontalLayout_9.addWidget(self.hallGraduationUpdate)
+        self.hallGraduationLineUpdate = QtGui.QLineEdit(self.verticalLayoutWidget_2)
+        self.hallGraduationLineUpdate.setObjectName(_fromUtf8("hallGraduationLineUpdate"))
+        self.horizontalLayout_9.addWidget(self.hallGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_9)
+        self.horizontalLayout_4 = QtGui.QHBoxLayout()
+        self.horizontalLayout_4.setObjectName(_fromUtf8("horizontalLayout_4"))
+        
+        self.dateGraduationUpdate = QtGui.QLabel(self.verticalLayoutWidget_2)
+        self.dateGraduationUpdate.setObjectName(_fromUtf8("dateGraduationUpdate"))
+        self.horizontalLayout_4.addWidget(self.dateGraduationUpdate)
+        self.dateGraduationLineUpdate = QtGui.QDateTimeEdit(self.verticalLayoutWidget_2)
+        self.dateGraduationLineUpdate.setObjectName(_fromUtf8("dateGraduationLineUpdate"))
+        self.horizontalLayout_4.addWidget(self.dateGraduationLineUpdate)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_4)
+        
+        self.graduationUpdateBtnSend = QtGui.QPushButton(self.verticalLayoutWidget_2)
+        self.graduationUpdateBtnSend.setObjectName(_fromUtf8("graduationUpdateBtnSend"))
+        self.verticalLayout_3.addWidget(self.graduationUpdateBtnSend)
+        self.line = QtGui.QFrame(self.verticalLayoutWidget_2)
+        self.line.setFrameShape(QtGui.QFrame.HLine)
+        self.line.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line.setObjectName(_fromUtf8("line"))
+        self.verticalLayout_3.addWidget(self.line)
+        self.graduationSucessOrFailUpdate = QtGui.QLabel(self.updateGraduationBox)
+        self.graduationSucessOrFailUpdate.setGeometry(QtCore.QRect(-10, 430, 869, 49))
+        self.graduationSucessOrFailUpdate.setObjectName(_fromUtf8("graduationSucessOrFailUpdate"))
+
+        self.graduationSucessOrFailUpdate.setVisible(0)
+        self.updateGraduationBox.setVisible(0)
+        ### --- ###
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         ### Auxiliar functions ###
         def clearDictionary(dict):
             for key in dict.keys():
@@ -436,6 +711,9 @@ class Ui_MainWindow(object):
             self.addSpecialistBox.setVisible(0)
             self.clientSucessOrFail.setVisible(0)
             self.visualizePeopleBox.setVisible(0)
+            self.graduationSucessOrFail.setVisible(0)
+            self.addGraduationBox.setVisible(0)
+            self.updateGraduationBox.setVisible(0)
 
         ### --- ###
 
@@ -523,6 +801,60 @@ class Ui_MainWindow(object):
             self.visualizePeopleBox.setVisible(1)
         ### --- ###
 
+        ### Graduation functions ###
+        def graduationAdd():
+            clearWindow()
+            self.addGraduationBox.setVisible(1)
+
+        def checkInputGraduationAdd(graduation):
+            if(graduation['client'] =='a'): return False
+            else: return True
+
+        def inputGraduationAdd():
+            global graduation
+            graduation['client'] = self.clientGraduationLine.text()
+            graduation['date'] = self.dateGraduationLine.text()
+            graduation['value'] = self.valueGraduationLine.text()
+            graduation['paymentMethod'] = self.methodGraduationLine.text()
+            graduation['peopleNumber'] = self.nPeopleGraduationLine.text()
+            graduation['bartender'] = self.bartenderGraduationLine.text()
+            graduation['cupbearer'] = self.cupbearerGraduationLine.text()
+            graduation['hall'] = self.hallGraduationLine.text()
+            print(graduation)
+            if (checkInputGraduationAdd(graduation)):
+                self.graduationSucessOrFail.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Formatura inserida com sucesso</p></body></html>", None))
+            else:
+                self.graduationSucessOrFail.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Alguma informação é inválida!</p></body></html>", None))
+            self.graduationSucessOrFail.setVisible(1)
+            clearDictionary(graduation)
+
+        def graduationUpdate():
+            clearWindow()
+            self.updateGraduationBox.setVisible(1)
+
+        def checkInputGraduationUpdate(graduation):
+            if(graduation['client'] =='a'): return False
+            else: return True
+
+        def inputGraduationUpdate():
+            global graduation
+            graduation['client'] = self.clientGraduationLineUpdate.text()
+            graduation['date'] = self.dateGraduationLineUpdate.text()
+            graduation['value'] = self.valueGraduationLineUpdate.text()
+            graduation['paymentMethod'] = self.methodGraduationLineUpdate.text()
+            graduation['peopleNumber'] = self.nPeopleGraduationLineUpdate.text()
+            graduation['bartender'] = self.bartenderGraduationLineUpdate.text()
+            graduation['cupbearer'] = self.cupbearerGraduationLineUpdate.text()
+            graduation['hall'] = self.hallGraduationLineUpdate.text()
+            print(graduation)
+            if (checkInputGraduationUpdate(graduation)):
+                self.graduationSucessOrFailUpdate.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Formatura atualizada com sucesso</p></body></html>", None))
+            else:
+                self.graduationSucessOrFailUpdate.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">Alguma informação é inválida!</p></body></html>", None))
+            self.graduationSucessOrFailUpdate.setVisible(1)
+            clearDictionary(graduation)
+        ### --- ###
+
 
 
 
@@ -533,10 +865,16 @@ class Ui_MainWindow(object):
         self.actionFuncion_rios.triggered.connect(employeeAdd)
         self.actionEspecialista.triggered.connect(specialistAdd)
         self.actionVisualizar.triggered.connect(showPeople)
-        self.actionAdicionar_2.triggered.connect(clientAdd)
+        self.actionFormatura.triggered.connect(graduationAdd)
+        self.actionFormatura_2.triggered.connect(graduationUpdate)
+        self.actionCasamento.triggered.connect(clientAdd)
+        self.actionCasamento_2.triggered.connect(clientAdd)
+
         QtCore.QObject.connect(self.clientAddBtnSend, QtCore.SIGNAL(_fromUtf8("clicked()")), inputClientAdd)
         QtCore.QObject.connect(self.employeeAddBtnSend, QtCore.SIGNAL(_fromUtf8("clicked()")), inputEmployeeAdd)
         QtCore.QObject.connect(self.specialistAddBtnSend, QtCore.SIGNAL(_fromUtf8("clicked()")), inputSpecialistAdd)
+        QtCore.QObject.connect(self.graduationAddBtnSend, QtCore.SIGNAL(_fromUtf8("clicked()")), inputGraduationAdd)
+        QtCore.QObject.connect(self.graduationUpdateBtnSend, QtCore.SIGNAL(_fromUtf8("clicked()")), inputGraduationUpdate)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -555,11 +893,9 @@ class Ui_MainWindow(object):
         self.actionFuncion_rios.setText(_translate("MainWindow", "Funcionário", None))
         self.actionEspecialista.setText(_translate("MainWindow", "Especialista", None))
         self.actionRemover.setText(_translate("MainWindow", "Remover", None))
-        self.actionAdicionar_2.setText(_translate("MainWindow", "Adicionar", None))
         self.actionAlterar_2.setText(_translate("MainWindow", "Alterar", None))
         self.actionRemover_2.setText(_translate("MainWindow", "Remover", None))
         self.actionVisualizar_2.setText(_translate("MainWindow", "Visualizar", None))
-        self.actionAlterar_3.setText(_translate("MainWindow", "Alterar", None))
         self.actionRemover_3.setText(_translate("MainWindow", "Remover", None))
         self.actionAdicionar_3.setText(_translate("MainWindow", "Adicionar", None))
         self.actionVisualizar_3.setText(_translate("MainWindow", "Visualizar", None))
@@ -607,9 +943,36 @@ class Ui_MainWindow(object):
 
         self.visualizePeopleBox.setTitle(_translate("MainWindow", "Visualização de Pessoas", None))
 
-        self.eventTypeBox.setTitle(_translate("MainWindow", "Escolha o tipo de evento:", None))
-        self.btnMarriage.setText(_translate("MainWindow", "Formatura", None))
-        self.btnGraduation.setText(_translate("MainWindow", "Casamento", None))
+        self.menuAdicionar_2.setTitle(_translate("MainWindow", "Adicionar", None))
+        self.menuAlterar.setTitle(_translate("MainWindow", "Alterar", None))
+        self.actionFormatura.setText(_translate("MainWindow", "Formatura", None))
+        self.actionCasamento.setText(_translate("MainWindow", "Casamento", None))
+        self.actionFormatura_2.setText(_translate("MainWindow", "Formatura", None))
+        self.actionCasamento_2.setText(_translate("MainWindow", "Casamento", None))
+
+        self.addGraduationBox.setTitle(_translate("MainWindow", "Adicionar Formatura", None))
+        self.clientGraduation.setText(_translate("MainWindow", "Cliente:                                   ", None))
+        self.valueGraduation.setText(_translate("MainWindow", "Valor:                                     ", None))
+        self.methodGraduation.setText(_translate("MainWindow", "Metodo de Pagamento:    ", None))
+        self.nPeopleGraduation.setText(_translate("MainWindow", "Número de Pessoas:         ", None))
+        self.bartenderGraduation.setText(_translate("MainWindow", "Bartender:                          ", None))
+        self.cupbearerGraduation.setText(_translate("MainWindow", "Copeiro:                              ", None))
+        self.hallGraduation.setText(_translate("MainWindow", "Salão:                                  ", None))
+        self.dateGraduation.setText(_translate("MainWindow", "Data:", None))
+        self.graduationAddBtnSend.setText(_translate("MainWindow", "Enviar", None))
+        
+        self.graduationSucessOrFail.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">?</p></body></html>", None))
+        self.updateGraduationBox.setTitle(_translate("MainWindow", "Alterar Formatura", None))
+        self.clientGraduationUpdate.setText(_translate("MainWindow", "Cliente:                                   ", None))
+        self.valueGraduationUpdate.setText(_translate("MainWindow", "Valor:                                     ", None))
+        self.methodGraduationUpdate.setText(_translate("MainWindow", "Metodo de Pagamento:    ", None))
+        self.nPeopleGraduationUpdate.setText(_translate("MainWindow", "Número de Pessoas:         ", None))
+        self.bartenderGraduationUpdate.setText(_translate("MainWindow", "Bartender:                          ", None))
+        self.cupbearerGraduationUpdate.setText(_translate("MainWindow", "Copeiro:                              ", None))
+        self.hallGraduationUpdate.setText(_translate("MainWindow", "Salão:                                  ", None))
+        self.dateGraduationUpdate.setText(_translate("MainWindow", "Data:", None))
+        self.graduationSucessOrFailUpdate.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">?</p></body></html>", None))
+        self.graduationUpdateBtnSend.setText(_translate("MainWindow", "Enviar", None))
 
 
 if __name__ == "__main__":
@@ -620,4 +983,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
