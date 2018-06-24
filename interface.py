@@ -1,5 +1,6 @@
 import os
 import re
+import datetime
 
 #GLOBAL VARIABLES
 #Dictionaries
@@ -251,6 +252,7 @@ def getEventsInput(type, operation):
 			if(type.upper() == 'WEDDING'): userInput = str(input("Digite o data(AAAA-MM-DD-HH-MM) do Casamento: "))
 			dateFormat = re.compile('[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}')
 			if(dateFormat.match(userInput) and len(userInput)==16):
+				year = int(userInput[0:4])
 				month = int(userInput[5:7])
 				day = int(userInput[8:10])
 				hour = int(userInput[11:13])
@@ -261,7 +263,7 @@ def getEventsInput(type, operation):
 		except:
 			print("Entrada inválida")
 			continue
-	event['date'] = userInput
+	event['date'] = datetime.datetime(year,month,day,hour,minute)
 
 	if(operation.upper() == 'DELETE'): return
 
@@ -286,7 +288,7 @@ def getEventsInput(type, operation):
 		except:
 			print("Entrada inválida")
 			continue
-	if(userInput != '-1'): event['method'] = userInput
+	if(userInput != '-1'): event['paymentMethod'] = userInput
 
 	while(True):
 		try:
@@ -308,7 +310,7 @@ def getEventsInput(type, operation):
 		except:
 			print("Entrada inválida")
 			continue
-		event['hall'] = userInput
+	event['hall'] = userInput
 
 	if(type.upper() == 'GRADUATION'):
 		while(True):
