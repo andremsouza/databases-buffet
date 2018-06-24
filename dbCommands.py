@@ -56,13 +56,24 @@ def insertCliente(conn, client):
 	try:
 		cur = conn.cursor()
 		cur.execute("""
-			INSERT INTO CLIENTE (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
+			INSERT INTO PESSOA (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
 			""", (client['cpf'], client['name'], cliente['email'], cliente['address']))
+		cur.execute("""
+			INSERT INTO CLIENTE (CPF) VALUES (%s);
+			""", (client['cpf'], ))
 	except Exception as e:
 		print("Unable to execute table insertion. Exception: " + str(e))
 		raise e
 
-#def insertFuncionario(conn):
+def insertFuncionario(conn, employee):
+	try:
+		cur = conn.cursor()
+		cur.execute("""
+			INSERT INTO FUNCIONARIO (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
+			""", (client['cpf'], client['name'], cliente['email'], cliente['address']))
+	except Exception as e:
+		print("Unable to execute table insertion. Exception: " + str(e))
+		raise e	
 
 #def insertEspecialista(conn):
 
