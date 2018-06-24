@@ -78,7 +78,18 @@ def insertFuncionario(conn, employee):
 		print("Unable to execute table insertion. Exception: " + str(e))
 		raise e	
 
-#def insertEspecialista(conn):
+def insertEspecialista(conn, specialist):
+	try:
+		cur = conn.cursor()
+		cur.execute("""
+			INSERT INTO PESSOA (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
+			""", (specialist['cpf'], specialist['name'], specialist['email'], specialist['address']))
+		cur.execute("""
+			INSERT INTO ESPECIALISTA (CPF, ESPECIALIDADE, TAXA_HORA) VALUES (%s, %s, %s);
+			""", (specialist['specialty'], specialist['hourFee']))
+	except Exception as e:
+		print("Unable to execute table insertion. Exception: " + str(e))
+		raise e
 
 ######### Na interface está previsto: #########
 # 1)Adicionar Cliente, Funcionário, Especialista
