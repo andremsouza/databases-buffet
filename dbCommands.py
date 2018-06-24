@@ -222,6 +222,42 @@ def searchContrato(conn):
 	except Exception as e:
 		raise e
 
+def searchProduto(conn):
+	try:
+		strout = []
+		strout.append([('NOME', )])
+		cur.execute("""SELECT PR.NOME FROM PRODUTO PR;""")
+		strout.append(cur.fetchall())
+		return strout
+	except Exception as e:
+		raise e
+
+def searchFornecedor(conn):
+	try:
+		strout = []
+		strout.append([('CNPJ', ), ('Nome', )])
+		cur.execute("""SELECT F.CNPJ, F.NOME FROM FORNECEDOR F;""")
+		strout.append(cur.fetchall())
+		return strout
+	except Exception as e:
+		raise e
+
+def searchCardapio(conn):
+	try:
+		strout = []
+		strout.append([('CLIENTE', ), ('DATAHORA', ), ('NROITEMS', )])
+		cur.execute("""SELECT CLIENTE, DATAHORA, NROITEMS FROM CARDAPIO;""")
+	except Exception as e:
+		raise e
+
+def searchCardapioItem(conn):
+	try:
+		strout = []
+		strout.append([('CLIENTE', ), ('DATAHORA', ), ('ITEM', )])
+		cur.execute("""SELECT CLIENTE, DATAHORA, ITEM FROM CARDAPIO_ITEM;""")
+	except Exception as e:
+		raise e
+
 ######### Na interface está previsto: #########
 # 1)Adicionar Cliente, Funcionário, Especialista - 
 # 2)Visualizar em uma tabela os dados de Cliente, Funcionário, Especialista juntos -- Pessoas - 
