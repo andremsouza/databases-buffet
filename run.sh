@@ -9,7 +9,6 @@ INSERT_OUT=inserts.sql
 SCHEMA_PATH=schema.sql
 ROLE_CHECK=`sudo su -- postgres -c "psql -c \"\du\""`
 DATABASE_CHECK=`sudo su -- postgres -c "psql -c \"\l\""`
-UBUNTU_VERSION=xenial # or bionic or trusty
 
 # Dependências
 sudo apt-get update && apt-get install -y build-essential python3 python3-dev apt-utils gnupg gnupg2 gnupg1 python3-psycopg2
