@@ -3,7 +3,7 @@
 # Usage: ./run.sh NUM_INSERTS
 
 # Variáveis de Ambiente
-USER=whoami
+USER=`whoami`
 DATABASE=buffet
 INSERT_OUT=inserts.sql
 SCHEMA_PATH=schema.sql
