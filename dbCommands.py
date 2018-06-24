@@ -202,8 +202,26 @@ def searchEventoAll(conn):
 				LEFT JOIN PESSOA PCO ON PCO.CPF = F.COPEIRO
 				LEFT JOIN PESSOA PMA ON PMA.CPF = C.MAITRE;
 			""")
+		strout.append(cur.fetchall())
+		return strout
 	except Exception as e:
 		raise e
+
+# Informações relacionadas a contratos dos especialistas
+def searchContrato(conn):
+	try:
+		strout = []
+		strout.append([('ESPECIALISTA', ), ('CPF', ), ('DATA_INICIO', ), ('ESPECIALIDADE', ),('DURACAO', ), ('REMUNERACAO', )])
+		cur.execute("""
+			SELECT P.NOME, E.CPF, CE.DATA_INICIO, E.ESPECIALIDADE, CE.DURACAO, CE.REMUNERACAO FROM CONTRATO_ESPECIALISTA CE
+				JOIN ESPECIALISTA E ON E.CPF = CE.ESPECIALISTA
+				JOIN PESSOA P ON P.CPF = CE.ESPECIALISTA;
+			""")
+		strout.append(cur.fetchall())
+		return strout
+	except Exception as e:
+		raise e
+
 ######### Na interface está previsto: #########
 # 1)Adicionar Cliente, Funcionário, Especialista - 
 # 2)Visualizar em uma tabela os dados de Cliente, Funcionário, Especialista juntos -- Pessoas - 
