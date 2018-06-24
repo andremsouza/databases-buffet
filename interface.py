@@ -3,9 +3,9 @@ import re
 
 #GLOBAL VARIABLES
 #Dictionaries
-client = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None}
-employee = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'salary' : None, 'function' : None}
-specialist = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'specialty' : None, 'hourFee' : None}
+client = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'phone' : None}
+employee = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'phone' : None, 'salary' : None, 'function' : None}
+specialist = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'phone' : None, 'specialty' : None, 'hourFee' : None}
 graduation = {'client' : None, 'date' : None, 'value' : None, 'paymentMethod' : None, 'peopleNumber' : None, 'bartender' : None, 'cupbearer' : None, 'hall' : None}
 wedding = {'client' : None, 'date' : None, 'value' : None, 'paymentMethod' : None, 'peopleNumber' : None, 'chef' : None, 'maitre' : None, 'hall' : None}
 
@@ -158,6 +158,20 @@ def getPeopleInput(type):
 			continue
 	person['email'] = userInput
 
+	while(True):
+		try:
+			if(type.upper() == 'CLIENT'): userInput = str(input("Digite o Telefone('(XX) XXXXX-XXXX' ou '(XX) XXXX-XXXX') do Cliente ou '-1' se não desejar informar agora: "))
+			if(type.upper() == 'EMPLOYEE'): userInput = str(input("Digite o Telefone('(XX) XXXXX-XXXX' ou '(XX) XXXX-XXXX') do Funcionário ou '-1' se não desejar informar agora: "))
+			if(type.upper() == 'SPECIALIST'): userInput = str(input("Digite o Telefone('(XX) XXXXX-XXXX' ou '(XX) XXXX-XXXX') do Especialista ou '-1' se não desejar informar agora: "))
+			phoneFormat = re.compile('^(\([0-9]{2}\) [0-9]{5}-[0-9]{4})|(\([0-9]{2}\) [0-9]{4}-[0-9]{4})$')
+			if(phoneFormat.match(userInput)): break
+			elif(userInput == '-1'): break
+			else: print("Entrada inválida - Telefone inválido")
+		except:
+			print("Entrada inválida")
+			continue
+	if(userInput != '-1'): person['phone'] = userInput
+
 	if(type.upper() == 'EMPLOYEE'):
 		while(True):
 			try:
@@ -241,7 +255,7 @@ def getEventsInput(type, operation):
 				day = int(userInput[8:10])
 				hour = int(userInput[11:13])
 				minute = int(userInput[14:])
-				if((month > 0 and month < 13) and (day > 0 and day < 32) and (hour > 0 and hour < 25) and (minute > 0 and minute < 61)): break
+				if((month > 0 and month < 13) and (day > 0 and day < 32) and (hour > -1 and hour < 24) and (minute > -1 and minute < 61)): break
 				else: print("Entrada inválida - Data inválida")
 			else: print("Entrada inválida - Data inválida")
 		except:
@@ -253,25 +267,26 @@ def getEventsInput(type, operation):
 
 	while(True):
 		try:
-			if(type.upper() == 'GRADUATION'): userInput = float(input("Digite o valor acordado pela Formatura: "))
-			if(type.upper() == 'WEDDING'): userInput = float(input("Digite o valor acordado pelo Casamento: "))
+			if(type.upper() == 'GRADUATION'): userInput = float(input("Digite o valor acordado pela Formatura ou '-1' se não desejar informar agora: "))
+			if(type.upper() == 'WEDDING'): userInput = float(input("Digite o valor acordado pelo Casamento ou '-1' se não desejar informar agora: "))
 			if(userInput > 0): break
+			elif(userInput == -1): break
 			else: print("Entrada inválida - Valor inválido")
 		except:
 			print("Entrada inválida")
 			continue
-	event['value'] = userInput
+	if(userInput != -1): event['value'] = userInput
 
 	while(True):
 		try:
-			if(type.upper() == 'GRADUATION'): userInput = str(input("Digite o método de pagamento('Dinheiro' ou 'Cartão') da Formatura: "))
-			if(type.upper() == 'WEDDING'): userInput = str(input("Digite o método de pagamento('Dinheiro' ou 'Cartão') do Casamento: "))
-			if(userInput.upper() != 'DINHEIRO' and userInput.upper() != 'CARTÂO'): print("Entrada inválida - A função deve ser 'Dinheiro' ou 'Cartão'")
+			if(type.upper() == 'GRADUATION'): userInput = str(input("Digite o método de pagamento('Dinheiro' ou 'Cartão') da Formatura ou '-1' se não desejar informar agora: "))
+			if(type.upper() == 'WEDDING'): userInput = str(input("Digite o método de pagamento('Dinheiro' ou 'Cartão') do Casamento ou '-1' se não desejar informar agora: "))
+			if(userInput.upper() != 'DINHEIRO' and userInput.upper() != 'CARTÃO' and userInput != '-1'): print("Entrada inválida - O método deve ser 'Dinheiro' ou 'Cartão'")
 			else: break
 		except:
 			print("Entrada inválida")
 			continue
-	event['method'] = userInput
+	if(userInput != '-1'): event['method'] = userInput
 
 	while(True):
 		try:
@@ -298,48 +313,52 @@ def getEventsInput(type, operation):
 	if(type.upper() == 'GRADUATION'):
 		while(True):
 			try:
-				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Bartender da Formatura: "))
+				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Bartender da Formatura ou '-1' se não desejar informar agora: "))
 				cpfFormat = re.compile('[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}-[0-9]{2}')
 				if(cpfFormat.match(userInput) and len(userInput)==14): break
+				elif(userInput == '-1'): break
 				else: print("Entrada inválida - CPF inválido")
 			except:
 				print("Entrada inválida")
 				continue
-		event['bartender'] = userInput
+		if((userInput != '-1')): event['bartender'] = userInput
 
 		while(True):
 			try:
-				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Copeiro da Formatura: "))
+				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Copeiro da Formaturaou '-1' se não desejar informar agora: "))
 				cpfFormat = re.compile('[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}-[0-9]{2}')
 				if(cpfFormat.match(userInput) and len(userInput)==14): break
+				elif(userInput == '-1'): break
 				else: print("Entrada inválida - CPF inválido")
 			except:
 				print("Entrada inválida")
 				continue
-		event['cupbearer'] = userInput
+		if((userInput != '-1')): event['cupbearer'] = userInput
 
 	if(type.upper() == 'WEDDING'):
 		while(True):
 			try:
-				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Chef do Casamento: "))
+				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Chef do Casamento ou '-1' se não desejar informar agora: "))
 				cpfFormat = re.compile('[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}-[0-9]{2}')
 				if(cpfFormat.match(userInput) and len(userInput)==14): break
+				elif(userInput == '-1'): break
 				else: print("Entrada inválida - CPF inválido")
 			except:
 				print("Entrada inválida")
 				continue
-		event['chef'] = userInput
+		if((userInput != '-1')): event['chef'] = userInput
 
 		while(True):
 			try:
-				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Maître do Casamento: "))
+				userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Maître do Casamento ou '-1' se não desejar informar agora: "))
 				cpfFormat = re.compile('[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}-[0-9]{2}')
 				if(cpfFormat.match(userInput) and len(userInput)==14): break
+				elif(userInput == '-1'): break
 				else: print("Entrada inválida - CPF inválido")
 			except:
 				print("Entrada inválida")
 				continue
-		event['maitre'] = userInput
+		if((userInput != '-1')): event['maitre'] = userInput
 
 	if(type.upper() == 'GRADUATION'): graduation = event
 	if(type.upper() == 'WEDDING'): wedding = event
@@ -374,6 +393,7 @@ def handleMenu():
 				getPeopleInput('CLIENT')
 				#TODO Link with database
 				print("Cliente adicionado com sucesso!")
+				print(client)
 				clearDictionary(client)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -384,6 +404,7 @@ def handleMenu():
 				getPeopleInput('EMPLOYEE')
 				#TODO Link with database
 				print("Funcionário adicionado com sucesso!")
+				print(employee)
 				clearDictionary(employee)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -394,6 +415,7 @@ def handleMenu():
 				getPeopleInput('SPECIALIST')
 				#TODO Link with database
 				print("Especialista adicionado com sucesso!")
+				print(specialist)
 				clearDictionary(specialist)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -426,6 +448,7 @@ def handleMenu():
 				global graduation
 				getEventsInput('GRADUATION', 'ADD')
 				#TODO Link with database
+				print(graduation)
 				print("Formatura adicionada com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -436,6 +459,7 @@ def handleMenu():
 				global graduation
 				getEventsInput('GRADUATION', 'UPDATE')
 				#TODO Link with database
+				print(graduation)
 				print("Formatura alterada com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -446,8 +470,9 @@ def handleMenu():
 				global wedding
 				getEventsInput('WEDDING', 'ADD')
 				#TODO Link with database
+				print(wedding)
 				print("Casamento adicionado com sucesso!")
-				clearDictionary(graduation)
+				clearDictionary(wedding)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -456,8 +481,9 @@ def handleMenu():
 				global wedding
 				getEventsInput('WEDDING', 'UPDATE')
 				#TODO Link with database
+				print(wedding)
 				print("Casamento alterado com sucesso!")
-				clearDictionary(graduation)
+				clearDictionary(wedding)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
