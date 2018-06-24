@@ -27,7 +27,7 @@ if echo "$ROLE_CHECK" | grep -q "$USER"; then
 	echo "Usuário \"$USER\" OK. Criando o database $DATABASE..."
 else
 	echo "Definindo permissões para o usuário \"$USER\"..."
-	sudo su -- postgres -c "psql -c \"CREATE ROLE $USER WITH PASSWORD 'buffet01';\"" && \
+	sudo su -- postgres -c "psql -c \"CREATE ROLE $USER;\"" && \
 	sudo su -- postgres -c "psql -c \"ALTER ROLE $USER SUPERUSER;\"" && \
 	sudo su -- postgres -c "psql -c \"ALTER ROLE $USER LOGIN;\"" && \
 	echo "Criando o database $DATABASE..."
