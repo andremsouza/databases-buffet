@@ -178,6 +178,7 @@ def updateCasamento(conn, wedding):
 def searchEventoAll(conn):
 	try:
 		strout = []
+		cur = conn.cursor()
 		strout.append([('CPFCLIENTE', ), ('NOMECLIENTE', ),('DATAHORA', ), ('CATEGORIA', ), ('VALOR', ), ('METODOPAGAMENTO', ), ('NROPESSOAS', ), ('BARTENDER / CHEF', ), ('COPEIRO / MAITRE', ), ('LOCAL', )])
 		cur.execute("""
 			SELECT E.CLIENTE "CPFCLIENTE", PCL.NOME "NOMECLIENTE", E.DATAHORA, E.CATEGORIA, E.VALOR, E.METODOPAGAMENTO, E.NROPESSOAS,
@@ -211,6 +212,7 @@ def searchEventoAll(conn):
 def searchContrato(conn):
 	try:
 		strout = []
+		cur = conn.cursor()
 		strout.append([('ESPECIALISTA', ), ('CPF', ), ('DATA_INICIO', ), ('ESPECIALIDADE', ),('DURACAO', ), ('REMUNERACAO', )])
 		cur.execute("""
 			SELECT P.NOME, E.CPF, CE.DATA_INICIO, E.ESPECIALIDADE, CE.DURACAO, CE.REMUNERACAO FROM CONTRATO_ESPECIALISTA CE
@@ -225,6 +227,7 @@ def searchContrato(conn):
 def searchProduto(conn):
 	try:
 		strout = []
+		cur = conn.cursor()
 		strout.append([('NOME', )])
 		cur.execute("""SELECT PR.NOME FROM PRODUTO PR;""")
 		strout.append(cur.fetchall())
@@ -235,6 +238,7 @@ def searchProduto(conn):
 def searchFornecedor(conn):
 	try:
 		strout = []
+		cur = conn.cursor()
 		strout.append([('CNPJ', ), ('Nome', )])
 		cur.execute("""SELECT F.CNPJ, F.NOME FROM FORNECEDOR F;""")
 		strout.append(cur.fetchall())
@@ -245,6 +249,7 @@ def searchFornecedor(conn):
 def searchCardapio(conn):
 	try:
 		strout = []
+		cur = conn.cursor()
 		strout.append([('CLIENTE', ), ('DATAHORA', ), ('NROITEMS', )])
 		cur.execute("""SELECT CLIENTE, DATAHORA, NROITEMS FROM CARDAPIO;""")
 	except Exception as e:
@@ -253,6 +258,7 @@ def searchCardapio(conn):
 def searchCardapioItem(conn):
 	try:
 		strout = []
+		cur = conn.cursor()
 		strout.append([('CLIENTE', ), ('DATAHORA', ), ('ITEM', )])
 		cur.execute("""SELECT CLIENTE, DATAHORA, ITEM FROM CARDAPIO_ITEM;""")
 	except Exception as e:
