@@ -11,7 +11,7 @@ ROLE_CHECK=`sudo su -- postgres -c "psql -c \"\du\""`
 DATABASE_CHECK=`sudo su -- postgres -c "psql -c \"\l\""`
 
 # Dependências
-sudo apt-get update && apt-get install -y build-essential python3 python3-dev apt-utils gnupg gnupg2 gnupg1 python3-psycopg2
+#sudo apt-get update && apt-get install -y build-essential python3 python3-dev apt-utils gnupg gnupg2 gnupg1 python3-psycopg2
 
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 sudo apt-get install wget ca-certificates
