@@ -69,8 +69,11 @@ def insertFuncionario(conn, employee):
 	try:
 		cur = conn.cursor()
 		cur.execute("""
-			INSERT INTO FUNCIONARIO (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
-			""", (client['cpf'], client['name'], cliente['email'], cliente['address']))
+			INSERT INTO PESSOA (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
+			""", (employee['cpf'], employee['name'], employee['email'], employee['address']))
+		cur.execute("""
+			INSERT INTO FUNCIONARIO (CPF, SALARIO, FUNCAO) VALUES (%s, %s, %s);
+			""", (employee['cpf'], employee['salary'], employee['function']))
 	except Exception as e:
 		print("Unable to execute table insertion. Exception: " + str(e))
 		raise e	
