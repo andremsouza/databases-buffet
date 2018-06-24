@@ -3,18 +3,68 @@ import getpass
 
 # Basic search in table "Pessoa"
 # Returns column names in strout[0], and query results in strout[1]
-def searchPessoa(conn, constraint):
-	strout = []
+# Similar structure for each function
+def searchPessoa(conn):
 	try:
+		strout = [] # Output
+		cur = conn.cursor() # Connection cursor. For sgbd command execution
+		cur.execute("""SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE UPPER(TABLE_NAME) = 'PESSOA';""") # SGBD command
+		strout.append(cur.fetchall()) # Output column names
+		cur.execute("""SELECT * FROM PESSOA ORDER BY NOME;""")
+		strout.append(cur.fetchall()) # Output rows
+		return strout
+	except Exception as e:
+		print("Unable to execute table search. Exception: " + str(e))
+		raise e
+
+# All informations of all persons in the system, except for phone numbers
+def searchPessoaAll(conn):
+	try:
+		strout = []
 		cur = conn.cursor()
-		cur.execute("""SELECT column_name FROM INFORMATION_SCHEMA.COLUMNS WHERE UPPER(TABLE_NAME) = 'PESSOA';""")
-		strout.append(cur.fetchall())
-		cur.execute("""SELECT * FROM PESSOA WHERE %s;""", (constraint, ))
+		strout.append([('CPF', ), ('NOME', ), ('ENDERECO', ), ('SALARIO', ), ('FUNCAO', ), ('ESPECIALIDADE', ), ('TAXA_HORA', )])
+		cur.execute("""
+			SELECT P.CPF, P.NOME, P.EMAIL, P.ENDERECO, F.SALARIO, F.FUNCAO, E.ESPECIALIDADE, E.TAXA_HORA FROM PESSOA P
+				LEFT JOIN FUNCIONARIO F ON P.CPF = F.CPF
+				LEFT JOIN ESPECIALISTA E ON P.CPF = E.CPF
+				ORDER BY P.NOME;
+				""")
 		strout.append(cur.fetchall())
 		return strout
 	except Exception as e:
 		print("Unable to execute table search. Exception: " + str(e))
-		return None
+		raise e
+
+# Basic search for phone numbers
+def searchPhone(conn):
+	try:
+		strout = []
+		cur.conn.cursor()
+		strout.append([('CPF', ), ('NOME', ), ('TELEFONE', )])
+		cur.execute("""
+			SELECT P.CPF, P.NOME, T.TELEFONE FROM TELEFONES T
+				INNER JOIN PESSOA P ON T.PESSOA = P.CPF
+				ORDER BY P.NOME;
+			""")
+		strout.append(cur.fetchall())
+		return strout
+	except Exception as e:
+		print("Unable to execute table search. Exception: " + str(e))
+		raise e
+
+def insertCliente(conn, client):
+	try:
+		cur = conn.cursor()
+		cur.execute("""
+			INSERT INTO CLIENTE (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
+			""", (client['cpf'], client['name'], cliente['email'], cliente['address']))
+	except Exception as e:
+		print("Unable to execute table insertion. Exception: " + str(e))
+		raise e
+
+#def insertFuncionario(conn):
+
+#def insertEspecialista(conn):
 
 ######### Na interface está previsto: #########
 # 1)Adicionar Cliente, Funcionário, Especialista
