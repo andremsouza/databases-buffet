@@ -1,8 +1,18 @@
 import os
 import re
 import datetime
+import psycopg2
+import getpass
+from dbCommands import *
 
 #GLOBAL VARIABLES
+#Connection with database
+try:
+	conn = psycopg2.connect("dbname = 'buffet' user = 'buffet' host = 'localhost' password = '"+passwd+"'")
+except Exception as e:
+	print("I am unable to connect to the database. Exception: " + str(e))
+	exit(1)
+
 #Dictionaries
 client = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'phone' : None}
 employee = {'name' : None, 'cpf' : None, 'address' : None, 'email' : None, 'phone' : None, 'salary' : None, 'function' : None}
@@ -39,6 +49,7 @@ def printMainMenu():
 	print("'4' para Gerenciar Operação")
 	print("'5' para realizar Consultas")
 	print("'6' para Sair")
+	hello()
 
 def printPeopleMenu():
 	os.system('clear')
@@ -88,7 +99,7 @@ def printQueriesMenu():
 
 def getPeopleInput(type):
 	os.system('clear')
-	global client, employee, specialist
+	global client, employee, specialist, conn
 	if(type.upper() == 'CLIENT'):
 		print("Adicionando Cliente")
 		person = client
@@ -222,7 +233,7 @@ def getPeopleInput(type):
 
 def getEventsInput(type, operation):
 	os.system('clear')
-	global graduation, wedding
+	global graduation, wedding, conn
 	if(type.upper() == 'GRADUATION'):
 		if(operation.upper() == 'ADD'): print("Adicionando Formatura")
 		if(operation.upper() == 'UPDATE'): print("Atualizando Formatura")
@@ -367,6 +378,7 @@ def getEventsInput(type, operation):
 
 def handleMenu():
 	exit = False
+	global conn
 	while(exit == False):
 		printMainMenu()
 		while(True):
@@ -393,9 +405,11 @@ def handleMenu():
 			if(option == 1):
 				global client
 				getPeopleInput('CLIENT')
-				#TODO Link with database
-				print("Cliente adicionado com sucesso!")
-				print(client)
+				try: insertCliente(conn, client)
+				except:
+					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+				else:
+					print("Cliente adicionado com sucesso!")
 				clearDictionary(client)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -404,9 +418,11 @@ def handleMenu():
 			if(option == 2):
 				global employee
 				getPeopleInput('EMPLOYEE')
-				#TODO Link with database
-				print("Funcionário adicionado com sucesso!")
-				print(employee)
+				try: insertFuncionario(conn, employee)
+				except:
+					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+				else:
+					print("Funcionário adicionado com sucesso!")
 				clearDictionary(employee)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -415,9 +431,11 @@ def handleMenu():
 			if(option == 3):
 				global specialist
 				getPeopleInput('SPECIALIST')
-				#TODO Link with database
-				print("Especialista adicionado com sucesso!")
-				print(specialist)
+				try: insertFuncionario(conn, specialist)
+				except:
+					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+				else:
+					print("Especialista adicionado com sucesso!")
 				clearDictionary(specialist)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -426,8 +444,11 @@ def handleMenu():
 			if(option == 4):
 				os.system('clear')
 				global peopleData
-				print(peopleData)
-				#TODO Link with database
+				try: peopleData = searchPessoaAll(conn)
+				except:
+					print("Desculpe, mas houve um problema na pesquisa!")
+				else:
+					print(peopleData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 			option = -1
@@ -449,9 +470,11 @@ def handleMenu():
 			if(option == 1):
 				global graduation
 				getEventsInput('GRADUATION', 'ADD')
-				#TODO Link with database
-				print(graduation)
-				print("Formatura adicionada com sucesso!")
+				try: insertFormatura(conn, graduation)
+				except:
+					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+				else:
+					print("Formatura adicionada com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -460,9 +483,11 @@ def handleMenu():
 			if(option == 2):
 				global graduation
 				getEventsInput('GRADUATION', 'UPDATE')
-				#TODO Link with database
-				print(graduation)
-				print("Formatura alterada com sucesso!")
+				try: updateFormatura(conn, graduation)
+				except:
+					print("Desculpe, mas houve um problema na alteração! Tente novamente com outros dados!")
+				else:
+					print("Formatura alterada com sucesso!")
 				clearDictionary(graduation)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -471,9 +496,11 @@ def handleMenu():
 			if(option == 3):
 				global wedding
 				getEventsInput('WEDDING', 'ADD')
-				#TODO Link with database
-				print(wedding)
-				print("Casamento adicionado com sucesso!")
+				try: insertCasamento(conn, wedding)
+				except:
+					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+				else:
+					print("Casamento adicionado com sucesso!")
 				clearDictionary(wedding)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -482,9 +509,11 @@ def handleMenu():
 			if(option == 4):
 				global wedding
 				getEventsInput('WEDDING', 'UPDATE')
-				#TODO Link with database
-				print(wedding)
-				print("Casamento alterado com sucesso!")
+				try: updateCasamento(conn, wedding)
+				except:
+					print("Desculpe, mas houve um problema na alteração! Tente novamente com outros dados!")
+				else:
+					print("Casamento alterado com sucesso!")
 				clearDictionary(wedding)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
@@ -493,8 +522,11 @@ def handleMenu():
 			if(option == 5):
 				os.system('clear')
 				global eventsData
-				print(eventsData)
-				#TODO Link with database
+				try: eventsData = searchEventoAll(conn)
+				except:
+					print("Desculpe, mas houve um problema na pesquisa!")
+				else:
+					print(eventsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -525,8 +557,11 @@ def handleMenu():
 			if(option == 1):
 				os.system('clear')
 				global contractsData
-				print(contractsData)
-				#TODO Link with database
+				try: contractsData = searchContrato(conn)
+				except:
+					print("Desculpe, mas houve um problema na pesquisa!")
+				else:
+					print(contractsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 			option = -1
@@ -547,8 +582,11 @@ def handleMenu():
 			if(option == 1):
 				os.system('clear')
 				global productsData
-				print(productsData)
-				#TODO Link with database
+				try: productsData = searchProduto(conn)
+				except:
+					print("Desculpe, mas houve um problema na pesquisa!")
+				else:
+					print(productsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -556,8 +594,11 @@ def handleMenu():
 			if(option == 2):
 				os.system('clear')
 				global providersData
-				print(providersData)
-				#TODO Link with database
+				try: providersData = searchFornecedor(conn)
+				except:
+					print("Desculpe, mas houve um problema na pesquisa!")
+				else:
+					print(providersData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -565,8 +606,11 @@ def handleMenu():
 			if(option == 3):
 				os.system('clear')
 				global menuData
-				print(menuData)
-				#TODO Link with database
+				try: menuData = searchCardapio(conn)
+				except:
+					print("Desculpe, mas houve um problema na pesquisa!")
+				else:
+					print(menuData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -574,8 +618,11 @@ def handleMenu():
 			if(option == 4):
 				os.system('clear')
 				global menuItemsData
-				print(menuItemsData)
-				#TODO Link with database
+				try: menuItemsData = searchCardapioItem(conn)
+				except:
+					print("Desculpe, mas houve um problema na pesquisa!")
+				else:
+					print(menuItemsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 			option = -1
