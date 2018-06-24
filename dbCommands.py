@@ -174,11 +174,41 @@ def updateCasamento(conn, wedding):
 		raise e
 
 
+# Todas as informações relevantes a todos os eventos
+def searchEventoAll(conn):
+	try:
+		strout = []
+		strout.append([('CPFCLIENTE', ), ('NOMECLIENTE', ),('DATAHORA', ), ('CATEGORIA', ), ('VALOR', ), ('METODOPAGAMENTO', ), ('NROPESSOAS', ), ('BARTENDER / CHEF', ), ('COPEIRO / MAITRE', ), ('LOCAL', )])
+		cur.execute("""
+			SELECT E.CLIENTE "CPFCLIENTE", PCL.NOME "NOMECLIENTE", E.DATAHORA, E.CATEGORIA, E.VALOR, E.METODOPAGAMENTO, E.NROPESSOAS,
+				CASE UPPER(E.CATEGORIA)
+					WHEN 'FORMATURA' THEN PBA.NOME
+					WHEN 'CASAMENTO' THEN PCH.NOME
+					END AS "BARTENDER / CHEF",
+				CASE UPPER(E.CATEGORIA)
+					WHEN 'FORMATURA' THEN PCO.NOME
+					WHEN 'CASAMENTO' THEN PMA.NOME
+					END AS "COPEIRO / MAITRE",
+				CASE UPPER(E.CATEGORIA)
+					WHEN 'FORMATURA' THEN F.SALAO
+					WHEN 'CASAMENTO' THEN C.LOCAL
+					END AS "LOCAL"
+				FROM EVENTO E
+				LEFT JOIN FORMATURA F ON E.CLIENTE = F.CLIENTE AND E.DATAHORA = F.DATAHORA
+				LEFT JOIN CASAMENTO C ON E.CLIENTE = C.CLIENTE AND E.DATAHORA = C.DATAHORA
+				LEFT JOIN PESSOA PCL ON PCL.CPF = E.CLIENTE
+				LEFT JOIN PESSOA PBA ON PBA.CPF = F.BARTENDER
+				LEFT JOIN PESSOA PCH ON PCH.CPF = C.CHEF
+				LEFT JOIN PESSOA PCO ON PCO.CPF = F.COPEIRO
+				LEFT JOIN PESSOA PMA ON PMA.CPF = C.MAITRE;
+			""")
+	except Exception as e:
+		raise e
 ######### Na interface está previsto: #########
 # 1)Adicionar Cliente, Funcionário, Especialista - 
 # 2)Visualizar em uma tabela os dados de Cliente, Funcionário, Especialista juntos -- Pessoas - 
 # 3)Adicionar e Atualizar Formatura e Casamento - 
-# 4)Visualizar em uma tabela dos dados de Formatura e Casamento juntos -- Eventos
+# 4)Visualizar em uma tabela dos dados de Formatura e Casamento juntos -- Eventos - 
 # 5)Visualizar em uma tabela dados de ContratoEvento e ContratoDeEspecialista -- Contratos
 # 6)Visualizar em uma tabelas separadas Produtos, Fornecedores, Cardápios, Itens dos Cardápios 
 # ---------------------------------------------
