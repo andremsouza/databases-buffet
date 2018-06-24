@@ -177,7 +177,7 @@ def updateCasamento(conn, wedding):
 ######### Na interface está previsto: #########
 # 1)Adicionar Cliente, Funcionário, Especialista - 
 # 2)Visualizar em uma tabela os dados de Cliente, Funcionário, Especialista juntos -- Pessoas - 
-# 3)Adicionar e Atualizar Formatura e Casamento
+# 3)Adicionar e Atualizar Formatura e Casamento - 
 # 4)Visualizar em uma tabela dos dados de Formatura e Casamento juntos -- Eventos
 # 5)Visualizar em uma tabela dados de ContratoEvento e ContratoDeEspecialista -- Contratos
 # 6)Visualizar em uma tabelas separadas Produtos, Fornecedores, Cardápios, Itens dos Cardápios 
