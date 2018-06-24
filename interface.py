@@ -55,14 +55,14 @@ def printEventsMenu():
 	print("'2' para Alterar Formatura")
 	print("'3' para Adicionar Casamento")
 	print("'4' para Alterar Casamento")
-	print("'5' para Visualizar Todas os Eventos")
+	print("'5' para Visualizar Todos os Eventos")
 	print("'6' para Deletar um Evento")
 	print("'7' para Voltar ao Menu Principal")
 
 def printContractsMenu():
 	os.system('clear')
 	print("Contratos - Digite: ")
-	print("'1' para Visualizar Todas os Contratos")
+	print("'1' para Visualizar Todos os Contratos")
 	print("'2' para Voltar ao Menu Principal")
 
 def printOperationMenu():
@@ -118,7 +118,15 @@ def getPeopleInput(type):
 			if(type.upper() == 'EMPLOYEE'): userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Funcionário: "))
 			if(type.upper() == 'SPECIALIST'): userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Especialista: "))
 			cpfFormat = re.compile('[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}-[0-9]{2}')
-			if(cpfFormat.match(userInput) and len(userInput)==14): break
+			if(cpfFormat.match(userInput) and len(userInput)==14): 
+				if(type.upper() == 'CLIENT'): break
+				if(type.upper() == 'EMPLOYEE'):
+					#TODO Pesquisar se já tem um especialista com este CPF e não permitir a inserção neste caso -- Prometemos tratar isto em Aplicação
+					break
+				if(type.upper() == 'SPECIALIST'):
+					#TODO Pesquisar se já tem um funcionário com este CPF e não permitir a inserção neste caso -- Prometemos tratar isto em Aplicação
+					break
+				
 			else: print("Entrada inválida - CPF inválido")
 		except:
 			print("Entrada inválida")
@@ -256,8 +264,8 @@ def getEventsInput(type, operation):
 
 	while(True):
 		try:
-			if(type.upper() == 'GRADUATION'): userInput = str(input("Digite o método de pagamento da Formatura: "))
-			if(type.upper() == 'WEDDING'): userInput = str(input("Digite o método de pagamento do Casamento: "))
+			if(type.upper() == 'GRADUATION'): userInput = str(input("Digite o método de pagamento('Dinheiro' ou 'Cartão') da Formatura: "))
+			if(type.upper() == 'WEDDING'): userInput = str(input("Digite o método de pagamento('Dinheiro' ou 'Cartão') do Casamento: "))
 			if(userInput.upper() != 'DINHEIRO' and userInput.upper() != 'CARTÂO'): print("Entrada inválida - A função deve ser 'Dinheiro' ou 'Cartão'")
 			else: break
 		except:
@@ -464,7 +472,7 @@ def handleMenu():
 
 			#Delete Event
 			if(option == 6):
-				global graduation
+				global graduation #Used to receive graduation['client'] and graduation['date'], but it serves to Wedding Events data either
 				getEventsInput('GRADUATION', 'DELETE') #Here we use 'GRADUATION', but this is used to Wedding events either
 				#TODO Link with database
 				print("Evento removido com sucesso!")

@@ -16,6 +16,25 @@ def searchPessoa(conn, constraint):
 		print("Unable to execute table search. Exception: " + str(e))
 		return None
 
+######### Na interface está previsto: #########
+# 1)Adicionar Cliente, Funcionário, Especialista
+# 2)Visualizar em uma tabela os dados de Cliente, Funcionário, Especialista juntos -- Pessoas
+# 3)Adicionar e Atualizar Formatura e Casamento
+# 4)Visualizar em uma tabela dos dados de Formatura e Casamento juntos -- Eventos
+# 5)Visualizar em uma tabela dados de ContratoEvento e ContratoDeEspecialista -- Contratos
+# 6)Visualizar em uma tabelas separadas Produtos, Fornecedores, Cardápios, Itens dos Cardápios 
+# ---------------------------------------------
+# Consultas: -- Estão em aberto ainda! Você pode escolher ...
+# 1)
+# 2)
+# 3)
+# 4)
+# 5)
+# 6)
+###############################################
+
+
+
 # Principais operações: 
 
 # Inserção e atualização de dados de pessoas, incluindo clientes, funcionários e especialistas;
@@ -36,3 +55,5 @@ def searchPessoa(conn, constraint):
 # Consultar quais são os fornecedores com maior volume de transações considerando os tipos de evento;
 
 # Consultar contrato, local, cardápio, data, hora, tipo de festa e pessoas envolvidas em cada evento (cliente, funcionário e especialista).
+
+
