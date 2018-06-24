@@ -14,7 +14,11 @@ except Exception as e:
 	print("I am unable to connect to the database. Exception: " + str(e))
 	exit(1)
 
-stri = searchPessoa(conn, True)
+stri = searchPessoa(conn)
+print(stri[0])
+for row in stri[1]:
+	print(row)
+stri = searchPessoaAll(conn)
 print(stri[0])
 for row in stri[1]:
 	print(row)
