@@ -146,12 +146,12 @@ def updateFormatura(conn, graduation):
 	try:
 		cur = conn.cursor()
 		cur.execute("""
-			UPDATE EVENTO E SET E.VALOR = %s, E.METODOPAGAMENTO = %s, E.NROPESSOAS = %s
-				WHERE E.CLIENTE = %s AND E.DATAHORA = %s
+			UPDATE EVENTO SET VALOR = %s, METODOPAGAMENTO = %s, NROPESSOAS = %s
+				WHERE CLIENTE = %s AND DATAHORA = %s
 			""", (graduation['value'], graduation['paymentMethod'], graduation['peopleNumber'], graduation['client'], graduation['date']))
 		cur.execute("""
-			UPDATE FORMATURA F SET F.BARTENDER = %s, F.COPEIRO = %s, F.SALAO = %s 
-				WHERE F.CLIENTE = %s AND F.DATAHORA = %s;
+			UPDATE FORMATURA SET BARTENDER = %s, COPEIRO = %s, SALAO = %s 
+				WHERE CLIENTE = %s AND DATAHORA = %s;
 			""", (graduation['bartender'], graduation['cupbearer'], graduation['hall'], graduation['client'], graduation['date']))
 		conn.commit()
 	except Exception as e:
@@ -178,12 +178,12 @@ def updateCasamento(conn, wedding):
 	try:
 		cur = conn.cursor()
 		cur.execute("""
-			UPDATE EVENTO E SET E.VALOR = %s, E.METODOPAGAMENTO = %s, E.NROPESSOAS = %s
-				WHERE E.CLIENTE = %s AND E.DATAHORA = %s
+			UPDATE EVENTO SET VALOR = %s, METODOPAGAMENTO = %s, NROPESSOAS = %s
+				WHERE CLIENTE = %s AND DATAHORA = %s
 			""", (wedding['value'], wedding['paymentMethod'], wedding['peopleNumber'], wedding['client'], wedding['date']))
 		cur.execute("""
-			UPDATE CASAMENTO C SET C.CHEF = %s, C.MAITRE = %s, C.LOCAL = %s 
-				WHERE C.CLIENTE = %s AND C.DATAHORA = %s;
+			UPDATE CASAMENTO SET CHEF = %s, MAITRE = %s, LOCAL = %s 
+				WHERE CLIENTE = %s AND DATAHORA = %s;
 			""", (wedding['chef'], wedding['maitre'], wedding['hall'], wedding['client'], wedding['date']))
 		conn.commit()
 	except Exception as e:
