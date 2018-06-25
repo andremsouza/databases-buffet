@@ -413,6 +413,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
 					print(str(e))
+					option = -1
 				else:
 					print("Cliente adicionado com sucesso!")
 				clearDictionary(client)
@@ -426,6 +427,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
 					print(str(e))
+					option = -1
 				else:
 					print("Funcionário adicionado com sucesso!")
 				clearDictionary(employee)
@@ -439,6 +441,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
 					print(str(e))
+					option = -1
 				else:
 					print("Especialista adicionado com sucesso!")
 				clearDictionary(specialist)
@@ -452,6 +455,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
 					print(str(e))
+					option = -1
 				else:
 					printFormatedData(peopleData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -478,6 +482,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
 					print(str(e))
+					option = -1
 				else:
 					print("Formatura adicionada com sucesso!")
 				clearDictionary(graduation)
@@ -491,6 +496,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na alteração! Tente novamente com outros dados!")
 					print(str(e))
+					option = -1
 				else:
 					print("Formatura alterada com sucesso!")
 				clearDictionary(graduation)
@@ -504,6 +510,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
 					print(str(e))
+					option = -1
 				else:
 					print("Casamento adicionado com sucesso!")
 				clearDictionary(wedding)
@@ -517,6 +524,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na alteração! Tente novamente com outros dados!")
 					print(str(e))
+					option = -1
 				else:
 					print("Casamento alterado com sucesso!")
 				clearDictionary(wedding)
@@ -530,6 +538,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
 					print(str(e))
+					option = -1
 				else:
 					printFormatedData(eventsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -554,6 +563,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
 					print(str(e))
+					option = -1
 				else:
 					printFormatedData(contractsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -579,6 +589,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
 					print(str(e))
+					option = -1
 				else:
 					printFormatedData(productsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -591,6 +602,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
 					print(str(e))
+					option = -1
 				else:
 					printFormatedData(providersData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -603,6 +615,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
 					print(str(e))
+					option = -1
 				else:
 					printFormatedData(menuData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -615,6 +628,7 @@ def handleMenu():
 				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
 					print(str(e))
+					option = -1
 				else:
 					printFormatedData(menuItemsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
