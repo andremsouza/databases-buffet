@@ -269,6 +269,8 @@ def searchCardapio(conn):
 		cur = conn.cursor()
 		strout.append([('CLIENTE', ), ('DATAHORA', ), ('NROITEMS', )])
 		cur.execute("""SELECT CLIENTE, DATAHORA, NROITEMS FROM CARDAPIO;""")
+		strout.append(cur.fetchall())
+		return strout
 	except Exception as e:
 		raise e
 
@@ -278,6 +280,40 @@ def searchCardapioItem(conn):
 		cur = conn.cursor()
 		strout.append([('CLIENTE', ), ('DATAHORA', ), ('ITEM', )])
 		cur.execute("""SELECT CLIENTE, DATAHORA, ITEM FROM CARDAPIO_ITEM;""")
+		strout.append(cur.fetchall())
+		return strout
+	except Exception as e:
+		raise e
+
+
+def searchCountFuncEvento(conn):
+	try:
+		strout = []
+		cur = conn.cursor()
+		strout.append([('Cliente', ), ('DATAHORA', ), ('NRO_FUNCIONARIOS', )])
+		cur.execute("""
+			SELECT CLIENTE, DATAHORA, COUNT(*) FROM FUNCIONARIO_EVENTO
+				GROUP BY CLIENTE, DATAHORA
+				ORDER BY CLIENTE, DATAHORA;
+			""")
+		strout.append(cur.fetchall())
+		return strout
+	except Exception as e:
+		raise e
+
+def searchProdutoItem(conn, event):
+	try:
+		strout = []
+		cur = conn.cursor()
+		strout.append([('PRODUTO', ), ('ITEM', )])
+		cur.execute("""
+			SELECT DISTINCT IF.PRODUTO, IF.ITEM FROM ITEM_FORNECIMENTO IF
+				JOIN CARDAPIO_ITEM CI ON CI.ITEM = IF.ITEM
+				WHERE UPPER(CI.CLIENTE) = UPPER(%s) AND CI.DATAHORA = %s
+				ORDER BY IF.PRODUTO, IF.ITEM;
+			""", (event['client'], event['date']))
+		strout.append(cur.fetchall())
+		return strout
 	except Exception as e:
 		raise e
 
