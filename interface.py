@@ -4,6 +4,7 @@ import datetime
 import psycopg2
 import getpass
 from dbCommands import *
+from prettytable import PrettyTable
 
 #GLOBAL VARIABLES
 #Connection with database
@@ -38,6 +39,12 @@ query4Data = 'Query 4 info here'
 query5Data = 'Query 5 info here'
 query6Data = 'Query 6 info here'
 
+def printFormatedData(strout):
+	t = PrettyTable(strout[0])
+	for i in range(len(strout[1])):
+		t.add_row(strout[1][i])
+	print(t)
+printFormatedData(strout)
 
 def clearDictionary(dict):
 	for key in dict.keys():
@@ -380,7 +387,8 @@ def getEventsInput(type, operation):
 
 def handleMenu():
 	exit = False
-	global conn
+	global conn, graduation, wedding, client, employee, specialist, peopleData, eventsData, contractsData, productsData, providersData, menuData, menuItemsData
+	global query1Data, query2Data, query3Data, query4Data, query5Data, query1Data
 	while(exit == False):
 		printMainMenu()
 		while(True):
@@ -405,7 +413,6 @@ def handleMenu():
 					continue
 			#Add Client
 			if(option == 1):
-				global client
 				getPeopleInput('CLIENT')
 				try: insertCliente(conn, client)
 				except:
@@ -418,7 +425,6 @@ def handleMenu():
 
 			#Add Employee
 			if(option == 2):
-				global employee
 				getPeopleInput('EMPLOYEE')
 				try: insertFuncionario(conn, employee)
 				except:
@@ -431,7 +437,6 @@ def handleMenu():
 
 			#Add SPECIALIST
 			if(option == 3):
-				global specialist
 				getPeopleInput('SPECIALIST')
 				try: insertFuncionario(conn, specialist)
 				except:
@@ -445,7 +450,6 @@ def handleMenu():
 			#Visualize People Data
 			if(option == 4):
 				os.system('clear')
-				global peopleData
 				try: peopleData = searchPessoaAll(conn)
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
@@ -470,7 +474,6 @@ def handleMenu():
 
 			#Add Graduation
 			if(option == 1):
-				global graduation
 				getEventsInput('GRADUATION', 'ADD')
 				try: insertFormatura(conn, graduation)
 				except:
@@ -483,7 +486,6 @@ def handleMenu():
 
 			#Update Graduation
 			if(option == 2):
-				global graduation
 				getEventsInput('GRADUATION', 'UPDATE')
 				try: updateFormatura(conn, graduation)
 				except:
@@ -496,7 +498,6 @@ def handleMenu():
 
 			#Add Wedding
 			if(option == 3):
-				global wedding
 				getEventsInput('WEDDING', 'ADD')
 				try: insertCasamento(conn, wedding)
 				except:
@@ -509,7 +510,6 @@ def handleMenu():
 
 			#Update Wedding
 			if(option == 4):
-				global wedding
 				getEventsInput('WEDDING', 'UPDATE')
 				try: updateCasamento(conn, wedding)
 				except:
@@ -523,7 +523,6 @@ def handleMenu():
 			#Visualize Events Data
 			if(option == 5):
 				os.system('clear')
-				global eventsData
 				try: eventsData = searchEventoAll(conn)
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
@@ -534,7 +533,6 @@ def handleMenu():
 
 			#Delete Event
 			if(option == 6):
-				global graduation #Used to receive graduation['client'] and graduation['date'], but it serves to Wedding Events data either
 				getEventsInput('GRADUATION', 'DELETE') #Here we use 'GRADUATION', but this is used to Wedding events either
 				#TODO Link with database
 				print("Evento removido com sucesso!")
@@ -558,7 +556,6 @@ def handleMenu():
 			#Visualize Contracts Data
 			if(option == 1):
 				os.system('clear')
-				global contractsData
 				try: contractsData = searchContrato(conn)
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
@@ -583,7 +580,6 @@ def handleMenu():
 			#Visualize Products Data
 			if(option == 1):
 				os.system('clear')
-				global productsData
 				try: productsData = searchProduto(conn)
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
@@ -595,7 +591,6 @@ def handleMenu():
 			#Visualize Providers Data
 			if(option == 2):
 				os.system('clear')
-				global providersData
 				try: providersData = searchFornecedor(conn)
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
@@ -607,7 +602,6 @@ def handleMenu():
 			#Visualize Menu Data
 			if(option == 3):
 				os.system('clear')
-				global menuData
 				try: menuData = searchCardapio(conn)
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
@@ -619,7 +613,6 @@ def handleMenu():
 			#Visualize Menu Items Data
 			if(option == 4):
 				os.system('clear')
-				global menuItemsData
 				try: menuItemsData = searchCardapioItem(conn)
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
@@ -644,7 +637,6 @@ def handleMenu():
 			#Visualize Query 1 Data
 			if(option == 1):
 				os.system('clear')
-				global query1Data
 				print(query1Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -653,7 +645,6 @@ def handleMenu():
 			#Visualize Query 2 Data
 			if(option == 2):
 				os.system('clear')
-				global query2Data
 				print(query2Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -662,7 +653,6 @@ def handleMenu():
 			#Visualize Query 3 Data
 			if(option == 3):
 				os.system('clear')
-				global query3Data
 				print(query3Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -671,7 +661,6 @@ def handleMenu():
 			#Visualize Query 4 Data
 			if(option == 4):
 				os.system('clear')
-				global query4Data
 				print(query4Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -680,7 +669,6 @@ def handleMenu():
 			#Visualize Query 5 Data
 			if(option == 5):
 				os.system('clear')
-				global query5Data
 				print(query5Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -689,7 +677,6 @@ def handleMenu():
 			#Visualize Query 6 Data
 			if(option == 6):
 				os.system('clear')
-				global query6Data
 				print(query6Data)
 				#TODO Link with database
 				wait =input("Pressione 'Enter' para continuar ... ")

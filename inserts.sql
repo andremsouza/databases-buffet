@@ -1,4 +1,4 @@
-INSERT INTO PESSOA VALUES ('330.555.777-99', 'Joao Pereira de Souza Siqueira', 'josiq321@gmail.com', 'Cidade: Sao Paulo/Rua: Theodoro/Nro: 1242');
+INSERT INTO PESSOA VALUES ('330.555.777-99', 'Joao Pereira de Souza Siqueira', 'josiq321@gmail.com', 'Sao Paulo');
 INSERT INTO PESSOA VALUES ('331.555.777-99', 'Bruno Wlakswatson', 'bruwlaks@gmail.com', NULL);
 INSERT INTO PESSOA VALUES ('332.555.777-99', 'Rafael Moura', 'rafamoura@gmail.com', NULL);
 INSERT INTO PESSOA VALUES ('333.555.777-99', 'Gabriel Cardoso', 'gabcard@gmail.com', NULL);
