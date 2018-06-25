@@ -8,8 +8,11 @@ from prettytable import PrettyTable
 
 #GLOBAL VARIABLES
 #Connection with database
+print("Tentando conectar a base de dados 'buffet': ")
+passwd = getpass.getpass() # Get a password ('buffet01')
 try:
 	conn = psycopg2.connect("dbname = 'buffet' user = 'buffet' host = 'localhost' password = '"+passwd+"'")
+	input("Conexão efetuada com sucesso. Pressione ENTER para continuar.")
 except Exception as e:
 	print("I am unable to connect to the database. Exception: " + str(e))
 	exit(1)
@@ -56,7 +59,6 @@ def printMainMenu():
 	print("'4' para Gerenciar Operação")
 	print("'5' para realizar Consultas")
 	print("'6' para Sair")
-	hello()
 
 def printPeopleMenu():
 	os.system('clear')
