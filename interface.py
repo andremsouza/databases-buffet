@@ -44,7 +44,7 @@ def printFormatedData(strout):
 	for i in range(len(strout[1])):
 		t.add_row(strout[1][i])
 	print(t)
-printFormatedData(strout)
+	printFormatedData(strout)
 
 def clearDictionary(dict):
 	for key in dict.keys():
