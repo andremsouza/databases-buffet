@@ -22,7 +22,7 @@ def searchPessoaAll(conn):
 	try:
 		strout = []
 		cur = conn.cursor()
-		strout.append([('CPF', ), ('NOME', ), ('ENDERECO', ), ('SALARIO', ), ('FUNCAO', ), ('ESPECIALIDADE', ), ('TAXA_HORA', )])
+		strout.append([('CPF', ), ('NOME', ), ('EMAIL', ), ('ENDERECO', ), ('SALARIO', ), ('FUNCAO', ), ('ESPECIALIDADE', ), ('TAXA_HORA', )])
 		cur.execute("""
 			SELECT P.CPF, P.NOME, P.EMAIL, P.ENDERECO, F.SALARIO, F.FUNCAO, E.ESPECIALIDADE, E.TAXA_HORA FROM PESSOA P
 				LEFT JOIN FUNCIONARIO F ON P.CPF = F.CPF
