@@ -57,7 +57,7 @@ def insertCliente(conn, client):
 		cur = conn.cursor()
 		cur.execute("""
 			INSERT INTO PESSOA (CPF, NOME, EMAIL, ENDERECO) VALUES (%s, %s, %s, %s);
-			""", (client['cpf'], client['name'], cliente['email'], cliente['address']))
+			""", (client['cpf'], client['name'], client['email'], client['address']))
 		cur.execute("""
 			INSERT INTO CLIENTE (CPF) VALUES (%s);
 			""", (client['cpf'], ))
@@ -102,7 +102,24 @@ def insertEspecialista(conn, specialist):
 			""", (specialist['cpf'], specialist['name'], specialist['email'], specialist['address']))
 		cur.execute("""
 			INSERT INTO ESPECIALISTA (CPF, ESPECIALIDADE, TAXA_HORA) VALUES (%s, %s, %s);
-			""", (specialist['specialty'], specialist['hourFee']))
+			""", (specialist['cpf'], specialist['specialty'], specialist['hourFee']))
+		if(specialist['specialty'].upper() == 'BARTENDER'):
+			cur.execute("""
+				INSERT INTO BARTENDER (CPF) VALUES (%s);
+				""", (specialist['cpf'], ))
+		elif(specialist['specialty'].upper() == 'COPEIRO'):
+			cur.execute("""
+				INSERT INTO COPEIRO (CPF) VALUES (%s);
+				""", (specialist['cpf'], ))
+		elif(specialist['specialty'].upper() == 'MAITRE'):
+			cur.execute("""
+				INSERT INTO MAITRE (CPF) VALUES (%s);
+				""", (specialist['cpf'], ))
+		elif(specialist['specialty'].upper() == 'CHEF'):
+			cur.execute("""
+				INSERT INTO CHEF (CPF) VALUES (%s);
+				""", (specialist['cpf'], ))
+
 		conn.commit()
 	except Exception as e:
 		#print("Unable to execute table insertion. Exception: " + str(e))
