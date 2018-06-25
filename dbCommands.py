@@ -52,6 +52,7 @@ def searchPhone(conn):
 		#print("Unable to execute table search. Exception: " + str(e))
 		raise e
 
+# Insert a client
 def insertCliente(conn, client):
 	try:
 		cur = conn.cursor()
@@ -66,6 +67,7 @@ def insertCliente(conn, client):
 		#print("Unable to execute table insertion. Exception: " + str(e))
 		raise e
 
+# Insert an employee
 def insertFuncionario(conn, employee):
 	try:
 		cur = conn.cursor()
@@ -87,6 +89,7 @@ def insertFuncionario(conn, employee):
 		#print("Unable to execute table insertion. Exception: " + str(e))
 		raise e	
 
+# Insert a specialist
 def insertEspecialista(conn, specialist):
 	try:
 		cur = conn.cursor()
@@ -125,7 +128,7 @@ def insertEspecialista(conn, specialist):
 		#print("Unable to execute table insertion. Exception: " + str(e))
 		raise e
 
-# graduation = {'client' : None, 'date' : None, 'value' : None, 'paymentMethod' : None, 'peopleNumber' : None, 'bartender' : None, 'cupbearer' : None, 'hall' : None}
+# Insert a graduation event
 def insertFormatura(conn, graduation):
 	try:
 		cur = conn.cursor()
@@ -158,6 +161,7 @@ def updateFormatura(conn, graduation):
 		#print("Unable to execute table update. Exception: " + str(e))
 		raise e
 
+# Insert an wedding
 def insertCasamento(conn, wedding):
 	try:
 		cur = conn.cursor()
@@ -241,6 +245,7 @@ def searchContrato(conn):
 	except Exception as e:
 		raise e
 
+# Busca de produtos
 def searchProduto(conn):
 	try:
 		strout = []
@@ -252,6 +257,7 @@ def searchProduto(conn):
 	except Exception as e:
 		raise e
 
+# Busca de fornecedores
 def searchFornecedor(conn):
 	try:
 		strout = []
@@ -263,6 +269,7 @@ def searchFornecedor(conn):
 	except Exception as e:
 		raise e
 
+# Busca de cardápios
 def searchCardapio(conn):
 	try:
 		strout = []
@@ -274,6 +281,7 @@ def searchCardapio(conn):
 	except Exception as e:
 		raise e
 
+# Busca de Items de cardápio
 def searchCardapioItem(conn):
 	try:
 		strout = []
@@ -285,7 +293,7 @@ def searchCardapioItem(conn):
 	except Exception as e:
 		raise e
 
-
+# Busca de quantidade de funcionários por evento
 def searchCountFuncEvento(conn):
 	try:
 		strout = []
@@ -301,6 +309,7 @@ def searchCountFuncEvento(conn):
 	except Exception as e:
 		raise e
 
+# Busca de items de um determinado evento, e produtos referentes a estes items
 def searchProdutoItem(conn, event):
 	try:
 		strout = []
