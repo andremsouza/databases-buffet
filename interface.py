@@ -34,17 +34,12 @@ menuData = 'Menu info here'
 menuItemsData = 'Menu Items info here'
 query1Data = 'Query 1 info here'
 query2Data = 'Query 2 info here'
-query3Data = 'Query 3 info here'
-query4Data = 'Query 4 info here'
-query5Data = 'Query 5 info here'
-query6Data = 'Query 6 info here'
 
 def printFormatedData(strout):
 	t = PrettyTable(strout[0])
 	for i in range(len(strout[1])):
 		t.add_row(strout[1][i])
 	print(t)
-	printFormatedData(strout)
 
 def clearDictionary(dict):
 	for key in dict.keys():
@@ -97,13 +92,9 @@ def printOperationMenu():
 def printQueriesMenu():
 	os.system('clear')
 	print("Consultas - Digite: ")
-	print("'1' para Consulta 1")
-	print("'2' para Consulta 2")
-	print("'3' para Consulta 3")
-	print("'4' para Consulta 4")
-	print("'5' para Consulta 5")
-	print("'6' para Consulta 6")
-	print("'7' para Voltar ao Menu Principal")
+	print("'1' para consultar quantos funcionários participarão de um determinado evento")
+	print("'2' para consultar quais produtos são necessário para fornecer os items do cardápio de um Evento")
+	print("'3' para Voltar ao Menu Principal")
 
 def getPeopleInput(type):
 	os.system('clear')
@@ -641,7 +632,7 @@ def handleMenu():
 			while(True):
 				try:
 					option = int(input("Selecione sua opção: "))
-					if(option>0 and option<8): break
+					if(option>0 and option<4): break
 					else: print("Comando inválido")
 				except:
 					print("Comando inválido")
@@ -650,49 +641,58 @@ def handleMenu():
 			#Visualize Query 1 Data
 			if(option == 1):
 				os.system('clear')
-				print(query1Data)
-				#TODO Link with database
+				try: query1Data = searchCountFuncEvento(conn)
+				except Exception as e:
+					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
+					option = -1
+				else:
+					printFormatedData(query1Data)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
 			#Visualize Query 2 Data
 			if(option == 2):
 				os.system('clear')
-				print(query2Data)
-				#TODO Link with database
-				wait =input("Pressione 'Enter' para continuar ... ")
-				option = -1
+				while(True):
+					try:
+						userInput = str(input("Digite o CPF(XXX.XXX.XXX-XX) do Cliente: "))
+						cpfFormat = re.compile('[0-9]{3}[\.][0-9]{3}[\.][0-9]{3}-[0-9]{2}')
+						if(cpfFormat.match(userInput) and len(userInput)==14): break
+						else: print("Entrada inválida - CPF inválido")
+					except:
+						print("Entrada inválida")
+						continue
+				graduation['cpf'] = userInput
 
-			#Visualize Query 3 Data
-			if(option == 3):
-				os.system('clear')
-				print(query3Data)
-				#TODO Link with database
-				wait =input("Pressione 'Enter' para continuar ... ")
-				option = -1
 
-			#Visualize Query 4 Data
-			if(option == 4):
-				os.system('clear')
-				print(query4Data)
-				#TODO Link with database
-				wait =input("Pressione 'Enter' para continuar ... ")
-				option = -1
+				while(True):
+					try:
+						userInput = str(input("Digite o data(AAAA-MM-DD-HH-MM) do evento: "))
+						dateFormat = re.compile('[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}')
+						if(dateFormat.match(userInput) and len(userInput)==16):
+							year = int(userInput[0:4])
+							month = int(userInput[5:7])
+							day = int(userInput[8:10])
+							hour = int(userInput[11:13])
+							minute = int(userInput[14:])
+							if((month > 0 and month < 13) and (day > 0 and day < 32) and (hour > -1 and hour < 24) and (minute > -1 and minute < 61)): break
+							else: print("Entrada inválida - Data inválida")
+						else: print("Entrada inválida - Data inválida")
+					except:
+						print("Entrada inválida")
+						continue
+				graduation['date'] = datetime.datetime(year,month,day,hour,minute)
 
-			#Visualize Query 5 Data
-			if(option == 5):
-				os.system('clear')
-				print(query5Data)
-				#TODO Link with database
+				try: query2Data = searchProdutoItem(conn, graduation)
+				except Exception as e:
+					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
+					option = -1
+				else:
+					printFormatedData(query2Data)
 				wait =input("Pressione 'Enter' para continuar ... ")
-				option = -1
-
-			#Visualize Query 6 Data
-			if(option == 6):
-				os.system('clear')
-				print(query6Data)
-				#TODO Link with database
-				wait =input("Pressione 'Enter' para continuar ... ")
+				clearDictionary(graduation)
 				option = -1
 			option = -1
 
