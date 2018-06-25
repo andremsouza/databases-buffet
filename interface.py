@@ -77,8 +77,7 @@ def printEventsMenu():
 	print("'3' para Adicionar Casamento")
 	print("'4' para Alterar Casamento")
 	print("'5' para Visualizar Todos os Eventos")
-	print("'6' para Deletar um Evento")
-	print("'7' para Voltar ao Menu Principal")
+	print("'6' para Voltar ao Menu Principal")
 
 def printContractsMenu():
 	os.system('clear')
@@ -246,7 +245,6 @@ def getEventsInput(type, operation):
 	if(type.upper() == 'GRADUATION'):
 		if(operation.upper() == 'ADD'): print("Adicionando Formatura")
 		if(operation.upper() == 'UPDATE'): print("Atualizando Formatura")
-		if(operation.upper() == 'DELETE'): print("Removendo Evento")
 		event = graduation
 
 	if(type.upper() == 'WEDDING'):
@@ -267,8 +265,7 @@ def getEventsInput(type, operation):
 
 	while(True):
 		try:
-			if(type.upper() == 'GRADUATION' and operation.upper() != 'DELETE'): userInput = str(input("Digite o data(AAAA-MM-DD-HH-MM) da Formatura: "))
-			if(type.upper() == 'GRADUATION' and operation.upper() == 'DELETE'): userInput = str(input("Digite o data(AAAA-MM-DD-HH-MM) do Evento: "))
+			if(type.upper() == 'GRADUATION'): userInput = str(input("Digite o data(AAAA-MM-DD-HH-MM) da Formatura: "))
 			if(type.upper() == 'WEDDING'): userInput = str(input("Digite o data(AAAA-MM-DD-HH-MM) do Casamento: "))
 			dateFormat = re.compile('[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}')
 			if(dateFormat.match(userInput) and len(userInput)==16):
@@ -284,8 +281,6 @@ def getEventsInput(type, operation):
 			print("Entrada inválida")
 			continue
 	event['date'] = datetime.datetime(year,month,day,hour,minute)
-
-	if(operation.upper() == 'DELETE'): return
 
 	while(True):
 		try:
@@ -454,7 +449,7 @@ def handleMenu():
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
 				else:
-					print(peopleData)
+					printFormatedData(peopleData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 			option = -1
@@ -466,7 +461,7 @@ def handleMenu():
 			while(True):
 				try:
 					option = int(input("Selecione sua opção: "))
-					if(option>0 and option<8): break
+					if(option>0 and option<7): break
 					else: print("Comando inválido")
 				except:
 					print("Comando inválido")
@@ -527,19 +522,9 @@ def handleMenu():
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
 				else:
-					print(eventsData)
+					printFormatedData(eventsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
-
-			#Delete Event
-			if(option == 6):
-				getEventsInput('GRADUATION', 'DELETE') #Here we use 'GRADUATION', but this is used to Wedding events either
-				#TODO Link with database
-				print("Evento removido com sucesso!")
-				clearDictionary(graduation)
-				wait =input("Pressione 'Enter' para continuar ... ")
-				option = -1
-			option = -1
 
 		#Manage Contracts
 		if(option == 3):
@@ -560,7 +545,7 @@ def handleMenu():
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
 				else:
-					print(contractsData)
+					printFormatedData(contractsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 			option = -1
@@ -584,7 +569,7 @@ def handleMenu():
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
 				else:
-					print(productsData)
+					printFormatedData(productsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -595,7 +580,7 @@ def handleMenu():
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
 				else:
-					print(providersData)
+					printFormatedData(providersData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -606,7 +591,7 @@ def handleMenu():
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
 				else:
-					print(menuData)
+					printFormatedData(menuData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 
@@ -617,7 +602,7 @@ def handleMenu():
 				except:
 					print("Desculpe, mas houve um problema na pesquisa!")
 				else:
-					print(menuItemsData)
+					printFormatedData(menuItemsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
 				option = -1
 			option = -1
