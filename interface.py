@@ -410,8 +410,9 @@ def handleMenu():
 			if(option == 1):
 				getPeopleInput('CLIENT')
 				try: insertCliente(conn, client)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+					print(str(e))
 				else:
 					print("Cliente adicionado com sucesso!")
 				clearDictionary(client)
@@ -422,8 +423,9 @@ def handleMenu():
 			if(option == 2):
 				getPeopleInput('EMPLOYEE')
 				try: insertFuncionario(conn, employee)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+					print(str(e))
 				else:
 					print("Funcionário adicionado com sucesso!")
 				clearDictionary(employee)
@@ -434,8 +436,9 @@ def handleMenu():
 			if(option == 3):
 				getPeopleInput('SPECIALIST')
 				try: insertFuncionario(conn, specialist)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+					print(str(e))
 				else:
 					print("Especialista adicionado com sucesso!")
 				clearDictionary(specialist)
@@ -446,8 +449,9 @@ def handleMenu():
 			if(option == 4):
 				os.system('clear')
 				try: peopleData = searchPessoaAll(conn)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
 				else:
 					printFormatedData(peopleData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -471,8 +475,9 @@ def handleMenu():
 			if(option == 1):
 				getEventsInput('GRADUATION', 'ADD')
 				try: insertFormatura(conn, graduation)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+					print(str(e))
 				else:
 					print("Formatura adicionada com sucesso!")
 				clearDictionary(graduation)
@@ -483,8 +488,9 @@ def handleMenu():
 			if(option == 2):
 				getEventsInput('GRADUATION', 'UPDATE')
 				try: updateFormatura(conn, graduation)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na alteração! Tente novamente com outros dados!")
+					print(str(e))
 				else:
 					print("Formatura alterada com sucesso!")
 				clearDictionary(graduation)
@@ -495,8 +501,9 @@ def handleMenu():
 			if(option == 3):
 				getEventsInput('WEDDING', 'ADD')
 				try: insertCasamento(conn, wedding)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na inserção! Tente novamente com outros dados!")
+					print(str(e))
 				else:
 					print("Casamento adicionado com sucesso!")
 				clearDictionary(wedding)
@@ -507,8 +514,9 @@ def handleMenu():
 			if(option == 4):
 				getEventsInput('WEDDING', 'UPDATE')
 				try: updateCasamento(conn, wedding)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na alteração! Tente novamente com outros dados!")
+					print(str(e))
 				else:
 					print("Casamento alterado com sucesso!")
 				clearDictionary(wedding)
@@ -519,8 +527,9 @@ def handleMenu():
 			if(option == 5):
 				os.system('clear')
 				try: eventsData = searchEventoAll(conn)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
 				else:
 					printFormatedData(eventsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -542,8 +551,9 @@ def handleMenu():
 			if(option == 1):
 				os.system('clear')
 				try: contractsData = searchContrato(conn)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
 				else:
 					printFormatedData(contractsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -566,8 +576,9 @@ def handleMenu():
 			if(option == 1):
 				os.system('clear')
 				try: productsData = searchProduto(conn)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
 				else:
 					printFormatedData(productsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -577,8 +588,9 @@ def handleMenu():
 			if(option == 2):
 				os.system('clear')
 				try: providersData = searchFornecedor(conn)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
 				else:
 					printFormatedData(providersData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -588,8 +600,9 @@ def handleMenu():
 			if(option == 3):
 				os.system('clear')
 				try: menuData = searchCardapio(conn)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
 				else:
 					printFormatedData(menuData)
 				wait =input("Pressione 'Enter' para continuar ... ")
@@ -599,8 +612,9 @@ def handleMenu():
 			if(option == 4):
 				os.system('clear')
 				try: menuItemsData = searchCardapioItem(conn)
-				except:
+				except Exception as e:
 					print("Desculpe, mas houve um problema na pesquisa!")
+					print(str(e))
 				else:
 					printFormatedData(menuItemsData)
 				wait =input("Pressione 'Enter' para continuar ... ")
