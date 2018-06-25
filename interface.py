@@ -4,6 +4,7 @@ import datetime
 import psycopg2
 import getpass
 from dbCommands import *
+from prettytable import PrettyTable
 
 #GLOBAL VARIABLES
 #Connection with database
@@ -35,6 +36,12 @@ query4Data = 'Query 4 info here'
 query5Data = 'Query 5 info here'
 query6Data = 'Query 6 info here'
 
+def printFormatedData(strout):
+	t = PrettyTable(strout[0])
+	for i in range(len(strout[1])):
+		t.add_row(strout[1][i])
+	print(t)
+printFormatedData(strout)
 
 def clearDictionary(dict):
 	for key in dict.keys():
